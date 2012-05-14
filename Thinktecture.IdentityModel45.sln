@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thinktecture.IdentityModel", "Thinktecture.IdentityModel\Thinktecture.IdentityModel.csproj", "{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Analysis (Debug)|Any CPU = Analysis (Debug)|Any CPU
+		Analysis (Debug)|Mixed Platforms = Analysis (Debug)|Mixed Platforms
+		Analysis (Debug)|x86 = Analysis (Debug)|x86
+		Contracts (Debug)|Any CPU = Contracts (Debug)|Any CPU
+		Contracts (Debug)|Mixed Platforms = Contracts (Debug)|Mixed Platforms
+		Contracts (Debug)|x86 = Contracts (Debug)|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Analysis (Debug)|Any CPU.ActiveCfg = Analysis (Debug)|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Analysis (Debug)|Any CPU.Build.0 = Analysis (Debug)|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Analysis (Debug)|Mixed Platforms.ActiveCfg = Analysis (Debug)|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Analysis (Debug)|Mixed Platforms.Build.0 = Analysis (Debug)|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Analysis (Debug)|x86.ActiveCfg = Analysis (Debug)|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Contracts (Debug)|Any CPU.ActiveCfg = Debug and Contracts|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Contracts (Debug)|Any CPU.Build.0 = Debug and Contracts|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Contracts (Debug)|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Contracts (Debug)|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Contracts (Debug)|x86.ActiveCfg = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
