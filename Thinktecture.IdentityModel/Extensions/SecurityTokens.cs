@@ -113,7 +113,7 @@ namespace Thinktecture.IdentityModel.Extensions
         }
         #endregion
 
-        #region To IClaimsPrincipal
+        #region To ClaimsPrincipal
         /// <summary>
         /// Converts a SecurityToken to an IClaimsPrincipal.
         /// </summary>

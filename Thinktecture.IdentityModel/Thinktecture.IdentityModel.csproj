@@ -41,6 +41,8 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\Thinktecture.IdentityServer\OnPremise\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -158,6 +160,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Thinktecture.IdentityServer\OnPremise\packages\Newtonsoft.Json.4.5.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -192,9 +197,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Wcf\UserNameWSTrustBinding.cs" />
-    <Compile Include="Wcf\WindowsWSTrustBinding.cs" />
-    <Compile Include="Wcf\WSTrustBindingBase.cs" />
+    <Compile Include="Base64Url.cs" />
+    <Compile Include="Claims\AnonymousClaimsPrincipal.cs" />
+    <Compile Include="Constants\Algorithms.cs" />
+    <Compile Include="Constants\JwtConstants.cs" />
+    <Compile Include="Constants\SwtConstants.cs" />
+    <Compile Include="DateTimeEpochExtensions.cs" />
+    <Compile Include="Constants\TokenTypes.cs" />
+    <Compile Include="Bindings\CertificateWSTrustBindings.cs" />
+    <Compile Include="Bindings\IssuedTokenWSTrustBinding.cs" />
+    <Compile Include="Bindings\KerberosWSTrustBinding.cs" />
+    <Compile Include="Bindings\UserNameWSTrustBinding.cs" />
+    <Compile Include="Bindings\WindowsWSTrustBinding.cs" />
+    <Compile Include="Bindings\WSTrustBindingBase.cs" />
     <Compile Include="Claims\ClaimPermission.cs" />
     <Compile Include="Claims\ClaimPermissionAttribute.cs" />
     <Compile Include="Claims\AuthenticationInstantClaim.cs" />
@@ -213,16 +228,35 @@
     <Compile Include="KeyGenerator.cs" />
     <Compile Include="ObfuscatingComparer.cs" />
     <Compile Include="Tokens\GenericUserNameSecurityTokenHandler.cs" />
-    <Compile Include="Wcf\WSTrustClient.cs" />
-    <Compile Include="DateTimeFormats.cs" />
-    <Compile Include="EmptyReadOnlyCollection.cs" />
+    <Compile Include="Bindings\WSTrustClient.cs" />
+    <Compile Include="Constants\DateTimeFormats.cs" />
     <Compile Include="Extensions\XmlExtensions\XElementExtensions.cs" />
     <Compile Include="Extensions\X509CertificateEndpointIdentity.cs" />
+    <Compile Include="Tokens\HmacSigningCredentials.cs" />
+    <Compile Include="Tokens\Http\BasicAuthenticationSecurityTokenHandler.cs" />
+    <Compile Include="Tokens\Http\HttpSaml2SecurityTokenHandler.cs" />
+    <Compile Include="Tokens\Http\HttpSamlSecurityTokenHandler.cs" />
+    <Compile Include="Tokens\Http\HttpSecurityTokenHandlerCollection.cs" />
+    <Compile Include="Tokens\Http\HttpsIssuerNameRegistry.cs" />
+    <Compile Include="Tokens\Http\HttpsSecurityTokenHandler.cs" />
+    <Compile Include="Tokens\JsonWebToken.cs" />
+    <Compile Include="Tokens\JsonWebTokenHandler.cs" />
+    <Compile Include="Tokens\JwtHeader.cs" />
+    <Compile Include="Tokens\SimpleSecurityToken.cs" />
+    <Compile Include="Tokens\SimpleSecurityTokenHandler.cs" />
+    <Compile Include="Tokens\SimpleWebToken.cs" />
+    <Compile Include="Tokens\SimpleWebTokenHandler.cs" />
     <Compile Include="Tokens\TestIssuerNameRegistry.cs" />
-    <Compile Include="Claims\ClaimNotFoundException.cs" />
     <Compile Include="Extensions\RSACryptoServiceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Constants\WSSecurity10Constants.cs" />
+    <Compile Include="Constants\WSTrust13Constants.cs" />
+    <Compile Include="Tokens\WebTokenIssuerNameRegistry.cs" />
+    <Compile Include="Tokens\WebTokenIssuerTokenResolver.cs" />
+    <Compile Include="Tokens\WebTokenSecurityKeyClause.cs" />
     <Compile Include="Web\ClaimsAuthenticationHttpModule.cs" />
+    <Compile Include="Web\ProtectedCookie.cs" />
+    <Compile Include="Web\ServiceAwareWSFederationAuthenticationModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -240,6 +274,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

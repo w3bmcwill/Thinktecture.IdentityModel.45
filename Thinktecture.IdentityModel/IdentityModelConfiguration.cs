@@ -31,9 +31,9 @@ namespace Thinktecture.IdentityModel
                 //{
                 //    // no WCF
 
-                    
 
-                    
+
+
                 //}
 
                 //// search message property
@@ -49,6 +49,6 @@ namespace Thinktecture.IdentityModel
                 //// return configuration from configuration file
                 //return new ServiceConfiguration();
             }
-        }   
+        }
     }
 }

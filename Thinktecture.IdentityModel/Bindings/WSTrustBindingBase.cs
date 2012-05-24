@@ -4,7 +4,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Security;
 using System.ServiceModel.Security.Tokens;
 
-namespace Thinktecture.IdentityModel45.Bindings
+namespace Thinktecture.IdentityModel.Bindings
 {
     public abstract class WSTrustBindingBase : Binding
     {

@@ -7,7 +7,7 @@
  * 
  */
 
-namespace Thinktecture.IdentityModel
+namespace Thinktecture.IdentityModel.Constants
 {
     /// <summary>
     /// Represents DateTimeFormats used in tokens and claims

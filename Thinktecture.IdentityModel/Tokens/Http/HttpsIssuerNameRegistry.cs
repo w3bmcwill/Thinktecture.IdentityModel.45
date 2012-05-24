@@ -8,15 +8,14 @@
  */
 
 using System;
-using System.Diagnostics;
 using System.IdentityModel.Tokens;
 
-namespace Thinktecture.IdentityModel.Tokens
+namespace Thinktecture.IdentityModel.Tokens.Http
 {
     /// <summary>
     /// Simple implementation of an issuer registy that returns the certificate issuer name or public key hash as an issuer
     /// </summary>
-    public class TestIssuerNameRegistry : IssuerNameRegistry
+    public class HttpsIssuerNameRegistry : IssuerNameRegistry
     {
         /// <summary>
         /// Gets the name of the issuer.
@@ -30,22 +29,10 @@ namespace Thinktecture.IdentityModel.Tokens
                 throw new ArgumentNullException("securityToken");
             }
 
-            var x509Token = securityToken as X509SecurityToken;
-            if (x509Token != null)
+            X509SecurityToken token = securityToken as X509SecurityToken;
+            if (token != null)
             {
-                var issuer = x509Token.Certificate.Thumbprint;
-                Debug.WriteLine("Certificate thumbprint: " + issuer);
-
-                return issuer;
-            }
-            
-            var rsaToken = securityToken as RsaSecurityToken;
-            if (rsaToken != null)
-            {
-                var issuer = rsaToken.Rsa.ToXmlString(false);
-                Debug.WriteLine("RSA: " + issuer);
-
-                return issuer;
+                return token.Certificate.Issuer;
             }
 
             throw new SecurityTokenException(securityToken.GetType().FullName);

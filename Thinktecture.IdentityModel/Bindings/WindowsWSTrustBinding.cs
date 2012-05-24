@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Thinktecture.IdentityModel45.Bindings
+namespace Thinktecture.IdentityModel.Bindings
 {
     public class WindowsWSTrustBinding : WSTrustBindingBase
     {
