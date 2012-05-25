@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 
 namespace Thinktecture.IdentityModel.Tokens

@@ -48,7 +48,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\build\core\</OutputPath>
+    <OutputPath>..\build\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -81,7 +81,7 @@
     <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
     <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
     <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
-    <DocumentationFile>..\build\core\Thinktecture.IdentityModel.XML</DocumentationFile>
+    <DocumentationFile>..\build\debug\Thinktecture.IdentityModel.XML</DocumentationFile>
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeContractsContainerAnalysis>False</CodeContractsContainerAnalysis>
@@ -92,7 +92,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\build\core\</OutputPath>
+    <OutputPath>..\build\release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -204,17 +204,16 @@
     <Compile Include="Constants\SwtConstants.cs" />
     <Compile Include="DateTimeEpochExtensions.cs" />
     <Compile Include="Constants\TokenTypes.cs" />
-    <Compile Include="Bindings\CertificateWSTrustBindings.cs" />
-    <Compile Include="Bindings\IssuedTokenWSTrustBinding.cs" />
-    <Compile Include="Bindings\KerberosWSTrustBinding.cs" />
-    <Compile Include="Bindings\UserNameWSTrustBinding.cs" />
-    <Compile Include="Bindings\WindowsWSTrustBinding.cs" />
-    <Compile Include="Bindings\WSTrustBindingBase.cs" />
+    <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
+    <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />
+    <Compile Include="WSTrust\KerberosWSTrustBinding.cs" />
+    <Compile Include="WSTrust\UserNameWSTrustBinding.cs" />
+    <Compile Include="WSTrust\WindowsWSTrustBinding.cs" />
+    <Compile Include="WSTrust\WSTrustBindingBase.cs" />
     <Compile Include="Claims\ClaimPermission.cs" />
     <Compile Include="Claims\ClaimPermissionAttribute.cs" />
     <Compile Include="Claims\AuthenticationInstantClaim.cs" />
     <Compile Include="Claims\ClaimsAuthorization.cs" />
-    <Compile Include="Claims\PpidCalculator.cs" />
     <Compile Include="CryptoRandom.cs" />
     <Compile Include="Extensions\RequestSecurityTokenResponseExtensions.cs" />
     <Compile Include="Extensions\SecurityTokens.cs" />
@@ -223,12 +222,10 @@
     <Compile Include="Extensions\XmlExtensions\XmlElementExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions\XDocumentExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions\XmlConverter.cs" />
-    <Compile Include="HexEncoder.cs" />
-    <Compile Include="IdentityModelConfiguration.cs" />
     <Compile Include="KeyGenerator.cs" />
     <Compile Include="ObfuscatingComparer.cs" />
     <Compile Include="Tokens\GenericUserNameSecurityTokenHandler.cs" />
-    <Compile Include="Bindings\WSTrustClient.cs" />
+    <Compile Include="WSTrust\WSTrustClient.cs" />
     <Compile Include="Constants\DateTimeFormats.cs" />
     <Compile Include="Extensions\XmlExtensions\XElementExtensions.cs" />
     <Compile Include="Extensions\X509CertificateEndpointIdentity.cs" />
@@ -278,7 +275,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

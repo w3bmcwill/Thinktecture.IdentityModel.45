@@ -1,6 +1,12 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IdentityModel.Services;
 using System.Linq;
 using System.Reflection;
 using System.Security;
@@ -79,7 +85,7 @@ namespace Thinktecture.IdentityModel.Claims
         /// </summary>
         public void Demand()
         {
-            var claimsAuthorizationManager = IdentityModelConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
+            var claimsAuthorizationManager = FederatedAuthentication.FederationConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
 
             var currentPrincipal = ClaimsPrincipal.Current;
 
@@ -112,7 +118,7 @@ namespace Thinktecture.IdentityModel.Claims
             var context = CreateAuthorizationContext(ClaimsPrincipal.Current, resourceAction);
             additionalResources.ToList().ForEach(claim => context.Resource.Add(claim));
 
-            var claimsAuthorizationManager = IdentityModelConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
+            var claimsAuthorizationManager = FederatedAuthentication.FederationConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
             return claimsAuthorizationManager.CheckAccess(context);
         }
 

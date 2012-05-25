@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 
 namespace Thinktecture.IdentityModel
 {
@@ -29,17 +34,17 @@ namespace Thinktecture.IdentityModel
 		/// <summary>
 		/// Converts the given epoch time to a <see cref="DateTime"/> with <see cref="DateTimeKind.Utc"/> kind.
 		/// </summary>
-		public static DateTime ToDateTimeFromEpoch(this long secondsSince1970)
+		public static DateTime ToDateTimeFromEpoch(this long intDate)
 		{
-			return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(secondsSince1970);
+			return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(intDate);
 		}
 
 		/// <summary>
 		/// Converts the given epoch time to a UTC <see cref="DateTimeOffset"/>.
 		/// </summary>
-		public static DateTimeOffset ToDateTimeOffsetFromEpoch(this long secondsSince1970)
+		public static DateTimeOffset ToDateTimeOffsetFromEpoch(this long intDate)
 		{
-			return new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero).AddSeconds(secondsSince1970);
+			return new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero).AddSeconds(intDate);
 		}
 	}
 }

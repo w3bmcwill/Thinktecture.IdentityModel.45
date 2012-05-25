@@ -1,11 +1,16 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
-namespace Thinktecture.IdentityModel.Bindings
+namespace Thinktecture.IdentityModel.WSTrust
 {
-    public class UserNameWSTrustBinding : WSTrustBindingBase
+    public class UserNameWSTrustBinding : WSTrustBinding
     {
         // Fields
         private HttpClientCredentialType _clientCredentialType;
@@ -13,8 +18,7 @@ namespace Thinktecture.IdentityModel.Bindings
         // Methods
         public UserNameWSTrustBinding()
             : this(SecurityMode.Message, HttpClientCredentialType.None)
-        {
-        }
+        { }
 
         public UserNameWSTrustBinding(SecurityMode securityMode)
             : base(securityMode)
@@ -32,10 +36,12 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentOutOfRangeException("clientCredentialType");
             }
+            
             if (((SecurityMode.Transport == mode) && (HttpClientCredentialType.Digest != clientCredentialType)) && (HttpClientCredentialType.Basic != clientCredentialType))
             {
                 throw new InvalidOperationException("ID3225");
             }
+            
             this._clientCredentialType = clientCredentialType;
         }
 
@@ -57,10 +63,12 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 return SecurityBindingElement.CreateUserNameForCertificateBindingElement();
             }
+            
             if (SecurityMode.TransportWithMessageCredential == base.SecurityMode)
             {
                 return SecurityBindingElement.CreateUserNameOverTransportBindingElement();
             }
+            
             return null;
         }
 
@@ -70,6 +78,7 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 return (value == HttpClientCredentialType.Certificate);
             }
+            
             return true;
         }
 
@@ -94,6 +103,4 @@ namespace Thinktecture.IdentityModel.Bindings
             }
         }
     }
-
-
 }

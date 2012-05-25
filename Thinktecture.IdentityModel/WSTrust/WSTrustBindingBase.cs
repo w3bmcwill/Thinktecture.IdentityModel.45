@@ -1,32 +1,39 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Security;
 using System.ServiceModel.Security.Tokens;
 
-namespace Thinktecture.IdentityModel.Bindings
+namespace Thinktecture.IdentityModel.WSTrust
 {
-    public abstract class WSTrustBindingBase : Binding
+    public abstract class WSTrustBinding : Binding
     {
-        // Fields
         private bool _enableRsaProofKeys;
         private SecurityMode _securityMode;
         private TrustVersion _trustVersion;
 
-        // Methods
-        protected WSTrustBindingBase(SecurityMode securityMode)
-            : this(securityMode, TrustVersion.WSTrust13)
-        {
-        }
+        protected abstract void ApplyTransportSecurity(HttpTransportBindingElement transport);
+        protected abstract SecurityBindingElement CreateSecurityBindingElement();
 
-        protected WSTrustBindingBase(SecurityMode securityMode, TrustVersion trustVersion)
+        protected WSTrustBinding(SecurityMode securityMode)
+            : this(securityMode, TrustVersion.WSTrust13)
+        { }
+
+        protected WSTrustBinding(SecurityMode securityMode, TrustVersion trustVersion)
         {
             this._securityMode = SecurityMode.Message;
             this._trustVersion = TrustVersion.WSTrust13;
+          
             if (trustVersion == null)
             {
                 throw new ArgumentNullException("trustVersion");
             }
+            
             this.ValidateTrustVersion(trustVersion);
             ValidateSecurityMode(securityMode);
             this._securityMode = securityMode;
@@ -39,6 +46,7 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentNullException("securityBindingElement");
             }
+            
             if (TrustVersion.WSTrustFeb2005 == this._trustVersion)
             {
                 securityBindingElement.MessageSecurityVersion = MessageSecurityVersion.WSSecurity11WSTrustFebruary2005WSSecureConversationFebruary2005WSSecurityPolicy11BasicSecurityProfile10;
@@ -47,6 +55,7 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 securityBindingElement.MessageSecurityVersion = MessageSecurityVersion.WSSecurity11WSTrust13WSSecureConversation13WSSecurityPolicy12BasicSecurityProfile10;
             }
+            
             if (this._enableRsaProofKeys)
             {
                 RsaSecurityTokenParameters item = new RsaSecurityTokenParameters
@@ -56,10 +65,10 @@ namespace Thinktecture.IdentityModel.Bindings
                 };
                 securityBindingElement.OptionalEndpointSupportingTokenParameters.Endorsing.Add(item);
             }
+            
             return securityBindingElement;
         }
 
-        protected abstract void ApplyTransportSecurity(HttpTransportBindingElement transport);
         public override BindingElementCollection CreateBindingElements()
         {
             BindingElementCollection elements = new BindingElementCollection();
@@ -78,10 +87,10 @@ namespace Thinktecture.IdentityModel.Bindings
             return new TextMessageEncodingBindingElement { ReaderQuotas = { MaxArrayLength = 0x200000, MaxStringContentLength = 0x200000 } };
         }
 
-        protected abstract SecurityBindingElement CreateSecurityBindingElement();
         protected virtual HttpTransportBindingElement CreateTransportBindingElement()
         {
             HttpTransportBindingElement element;
+            
             if (SecurityMode.Message == this._securityMode)
             {
                 element = new HttpTransportBindingElement();
@@ -90,11 +99,14 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 element = new HttpsTransportBindingElement();
             }
+            
             element.MaxReceivedMessageSize = 0x200000L;
+            
             if (SecurityMode.Transport == this._securityMode)
             {
                 this.ApplyTransportSecurity(element);
             }
+            
             return element;
         }
 
@@ -104,6 +116,7 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentOutOfRangeException("securityMode");
             }
+            
             if (securityMode == SecurityMode.None)
             {
                 throw new InvalidOperationException("ID3224");
@@ -118,7 +131,6 @@ namespace Thinktecture.IdentityModel.Bindings
             }
         }
 
-        // Properties
         public bool EnableRsaProofKeys
         {
             get
@@ -136,10 +148,12 @@ namespace Thinktecture.IdentityModel.Bindings
             get
             {
                 TransportBindingElement element = this.CreateBindingElements().Find<TransportBindingElement>();
+
                 if (element == null)
                 {
                     return string.Empty;
                 }
+                
                 return element.Scheme;
             }
         }
@@ -169,6 +183,7 @@ namespace Thinktecture.IdentityModel.Bindings
                 {
                     throw new ArgumentNullException("value");
                 }
+                
                 this.ValidateTrustVersion(value);
                 this._trustVersion = value;
             }

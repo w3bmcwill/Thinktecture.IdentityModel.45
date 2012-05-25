@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Linq;
@@ -14,7 +19,6 @@ namespace Thinktecture.IdentityModel.Tokens
         public string Type { get; set; }
         
         public SigningCredentials SigningCredentials { get; set; }
-        //public EncryptingCredentials EncryptingCredentials { get; set; }
 
         public JwtHeader()
         {

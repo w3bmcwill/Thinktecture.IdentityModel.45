@@ -1,10 +1,15 @@
-﻿using System.Net;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
-namespace Thinktecture.IdentityModel.Bindings
+namespace Thinktecture.IdentityModel.WSTrust
 {
-    public class KerberosWSTrustBinding : WSTrustBindingBase
+    public class KerberosWSTrustBinding : WSTrustBinding
     {
         // Methods
         public KerberosWSTrustBinding()

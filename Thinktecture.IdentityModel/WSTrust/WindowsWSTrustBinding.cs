@@ -1,21 +1,24 @@
-﻿using System.Net;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
-namespace Thinktecture.IdentityModel.Bindings
+namespace Thinktecture.IdentityModel.WSTrust
 {
-    public class WindowsWSTrustBinding : WSTrustBindingBase
+    public class WindowsWSTrustBinding : WSTrustBinding
     {
         // Methods
         public WindowsWSTrustBinding()
             : this(SecurityMode.Message)
-        {
-        }
+        { }
 
         public WindowsWSTrustBinding(SecurityMode securityMode)
             : base(securityMode)
-        {
-        }
+        { }
 
         protected override void ApplyTransportSecurity(HttpTransportBindingElement transport)
         {
@@ -28,10 +31,12 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 return SecurityBindingElement.CreateSspiNegotiationBindingElement(true);
             }
+          
             if (SecurityMode.TransportWithMessageCredential == base.SecurityMode)
             {
                 return SecurityBindingElement.CreateSspiNegotiationOverTransportBindingElement(true);
             }
+            
             return null;
         }
     }

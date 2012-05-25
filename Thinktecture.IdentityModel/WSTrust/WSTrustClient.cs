@@ -1,10 +1,6 @@
 ﻿/*
  * Copyright (c) Dominick Baier.  All rights reserved.
- * 
- * This code is licensed under the Microsoft Permissive License (Ms-PL)
- * 
- * SEE: http://www.microsoft.com/resources/sharedsource/licensingbasics/permissivelicense.mspx
- * 
+ * see license.txt
  */
 
 using System.IdentityModel.Protocols.WSTrust;
@@ -14,7 +10,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Security;
 
-namespace Thinktecture.IdentityModel.Utility
+namespace Thinktecture.IdentityModel.WSTrust
 {
     /// <summary>
     /// Wrapper for the WIF WSTrustChannelFactory/WSTrustChannel plumbing.

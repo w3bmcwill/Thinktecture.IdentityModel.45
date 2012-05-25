@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IdentityModel.Tokens;
@@ -8,11 +13,10 @@ using System.ServiceModel.Security;
 using System.ServiceModel.Security.Tokens;
 using System.Xml;
 
-namespace Thinktecture.IdentityModel.Bindings
+namespace Thinktecture.IdentityModel.WSTrust
 {
-    public class IssuedTokenWSTrustBinding : WSTrustBindingBase
+    public class IssuedTokenWSTrustBinding : WSTrustBinding
     {
-        // Fields
         private SecurityAlgorithmSuite _algorithmSuite;
         private Collection<ClaimTypeRequirement> _claimTypeRequirements;
         private EndpointAddress _issuerAddress;
@@ -21,41 +25,36 @@ namespace Thinktecture.IdentityModel.Bindings
         private SecurityKeyType _keyType;
         private string _tokenType;
 
-        // Methods
+     
         public IssuedTokenWSTrustBinding()
             : this(null, null)
-        {
-        }
+        { }
 
         public IssuedTokenWSTrustBinding(Binding issuerBinding, EndpointAddress issuerAddress)
             : this(issuerBinding, issuerAddress, SecurityMode.Message, TrustVersion.WSTrust13, null)
-        {
-        }
+        { }
 
         public IssuedTokenWSTrustBinding(Binding issuerBinding, EndpointAddress issuerAddress, EndpointAddress issuerMetadataAddress)
             : this(issuerBinding, issuerAddress, SecurityMode.Message, TrustVersion.WSTrust13, issuerMetadataAddress)
-        {
-        }
+        { }
 
         public IssuedTokenWSTrustBinding(Binding issuerBinding, EndpointAddress issuerAddress, string tokenType, IEnumerable<ClaimTypeRequirement> claimTypeRequirements)
             : this(issuerBinding, issuerAddress, SecurityKeyType.SymmetricKey, SecurityAlgorithmSuite.Basic256, tokenType, claimTypeRequirements)
-        {
-        }
+        { }
 
         public IssuedTokenWSTrustBinding(Binding issuerBinding, EndpointAddress issuerAddress, SecurityMode mode, TrustVersion trustVersion, EndpointAddress issuerMetadataAddress)
             : this(issuerBinding, issuerAddress, mode, trustVersion, SecurityKeyType.SymmetricKey, SecurityAlgorithmSuite.Basic256, null, null, issuerMetadataAddress)
-        {
-        }
+        { }
 
         public IssuedTokenWSTrustBinding(Binding issuerBinding, EndpointAddress issuerAddress, SecurityKeyType keyType, SecurityAlgorithmSuite algorithmSuite, string tokenType, IEnumerable<ClaimTypeRequirement> claimTypeRequirements)
             : this(issuerBinding, issuerAddress, SecurityMode.Message, TrustVersion.WSTrust13, keyType, algorithmSuite, tokenType, claimTypeRequirements, null)
-        {
-        }
+        { }
 
         public IssuedTokenWSTrustBinding(Binding issuerBinding, EndpointAddress issuerAddress, SecurityMode mode, TrustVersion version, SecurityKeyType keyType, SecurityAlgorithmSuite algorithmSuite, string tokenType, IEnumerable<ClaimTypeRequirement> claimTypeRequirements, EndpointAddress issuerMetadataAddress)
             : base(mode, version)
         {
             this._claimTypeRequirements = new Collection<ClaimTypeRequirement>();
+          
             if ((SecurityMode.Message != mode) && (SecurityMode.TransportWithMessageCredential != mode))
             {
                 throw new InvalidOperationException("ID3226");
@@ -64,12 +63,14 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new InvalidOperationException("ID3267");
             }
+            
             this._keyType = keyType;
             this._algorithmSuite = algorithmSuite;
             this._tokenType = tokenType;
             this._issuerBinding = issuerBinding;
             this._issuerAddress = issuerAddress;
             this._issuerMetadataAddress = issuerMetadataAddress;
+            
             if (claimTypeRequirements != null)
             {
                 foreach (ClaimTypeRequirement requirement in claimTypeRequirements)
@@ -85,6 +86,7 @@ namespace Thinktecture.IdentityModel.Bindings
             issuedParameters.AdditionalRequestParameters.Insert(0, this.CreateCanonicalizationAlgorithmElement(algorithmSuite.DefaultCanonicalizationAlgorithm));
             string signatureAlgorithm = null;
             string encryptionAlgorithm = null;
+            
             switch (keyType)
             {
                 case SecurityKeyType.SymmetricKey:
@@ -103,8 +105,10 @@ namespace Thinktecture.IdentityModel.Bindings
                 default:
                     throw new ArgumentOutOfRangeException("keyType");
             }
+            
             issuedParameters.AdditionalRequestParameters.Insert(0, this.CreateSignWithElement(signatureAlgorithm));
             issuedParameters.AdditionalRequestParameters.Insert(0, this.CreateEncryptWithElement(encryptionAlgorithm));
+            
             if (trustVersion != TrustVersion.WSTrustFeb2005)
             {
                 issuedParameters.AdditionalRequestParameters.Insert(0, CreateKeyWrapAlgorithmElement(algorithmSuite.DefaultAsymmetricKeyWrapAlgorithm));
@@ -122,8 +126,10 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentNullException("canonicalizationAlgorithm");
             }
-            XmlDocument document = new XmlDocument();
+            
+            var document = new XmlDocument();
             XmlElement element = null;
+            
             if (base.TrustVersion == TrustVersion.WSTrust13)
             {
                 element = document.CreateElement("trust", "CanonicalizationAlgorithm", "http://docs.oasis-open.org/ws-sx/ws-trust/200512");
@@ -132,10 +138,12 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 element = document.CreateElement("t", "CanonicalizationAlgorithm", "http://schemas.xmlsoap.org/ws/2005/02/trust");
             }
+
             if (element != null)
             {
                 element.AppendChild(document.CreateTextNode(canonicalizationAlgorithm));
             }
+            
             return element;
         }
 
@@ -145,8 +153,10 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentNullException("encryptionAlgorithm");
             }
+            
             XmlDocument document = new XmlDocument();
             XmlElement element = null;
+            
             if (base.TrustVersion == TrustVersion.WSTrust13)
             {
                 element = document.CreateElement("trust", "EncryptionAlgorithm", "http://docs.oasis-open.org/ws-sx/ws-trust/200512");
@@ -155,10 +165,12 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 element = document.CreateElement("t", "EncryptionAlgorithm", "http://schemas.xmlsoap.org/ws/2005/02/trust");
             }
+            
             if (element != null)
             {
                 element.AppendChild(document.CreateTextNode(encryptionAlgorithm));
             }
+            
             return element;
         }
 
@@ -168,8 +180,10 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentNullException("encryptionAlgorithm");
             }
+            
             XmlDocument document = new XmlDocument();
             XmlElement element = null;
+            
             if (base.TrustVersion == TrustVersion.WSTrust13)
             {
                 element = document.CreateElement("trust", "EncryptWith", "http://docs.oasis-open.org/ws-sx/ws-trust/200512");
@@ -178,10 +192,12 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 element = document.CreateElement("t", "EncryptWith", "http://schemas.xmlsoap.org/ws/2005/02/trust");
             }
+            
             if (element != null)
             {
                 element.AppendChild(document.CreateTextNode(encryptionAlgorithm));
             }
+            
             return element;
         }
 
@@ -191,20 +207,24 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentNullException("keyWrapAlgorithm");
             }
+            
             XmlDocument document = new XmlDocument();
             XmlElement element = document.CreateElement("trust", "KeyWrapAlgorithm", "http://docs.oasis-open.org/ws-sx/ws-trust/200512");
             element.AppendChild(document.CreateTextNode(keyWrapAlgorithm));
+            
             return element;
         }
 
         protected override SecurityBindingElement CreateSecurityBindingElement()
         {
             SecurityBindingElement element;
+            
             IssuedSecurityTokenParameters issuedParameters = new IssuedSecurityTokenParameters(this._tokenType, this._issuerAddress, this._issuerBinding)
             {
                 KeyType = this._keyType,
                 IssuerMetadataAddress = this._issuerMetadataAddress
             };
+            
             if (this._keyType == SecurityKeyType.SymmetricKey)
             {
                 issuedParameters.KeySize = this._algorithmSuite.DefaultSymmetricKeyLength;
@@ -213,6 +233,7 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 issuedParameters.KeySize = 0;
             }
+            
             if (this._claimTypeRequirements != null)
             {
                 foreach (ClaimTypeRequirement requirement in this._claimTypeRequirements)
@@ -220,6 +241,7 @@ namespace Thinktecture.IdentityModel.Bindings
                     issuedParameters.ClaimTypeRequirements.Add(requirement);
                 }
             }
+            
             this.AddAlgorithmParameters(this._algorithmSuite, base.TrustVersion, this._keyType, ref issuedParameters);
             if (SecurityMode.Message == base.SecurityMode)
             {
@@ -233,8 +255,10 @@ namespace Thinktecture.IdentityModel.Bindings
                 }
                 element = SecurityBindingElement.CreateIssuedTokenOverTransportBindingElement(issuedParameters);
             }
+            
             element.DefaultAlgorithmSuite = this._algorithmSuite;
             element.IncludeTimestamp = true;
+            
             return element;
         }
 
@@ -244,8 +268,10 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 throw new ArgumentNullException("signatureAlgorithm");
             }
+            
             XmlDocument document = new XmlDocument();
             XmlElement element = null;
+            
             if (base.TrustVersion == TrustVersion.WSTrust13)
             {
                 element = document.CreateElement("trust", "SignatureAlgorithm", "http://docs.oasis-open.org/ws-sx/ws-trust/200512");
@@ -254,14 +280,15 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 element = document.CreateElement("t", "SignatureAlgorithm", "http://schemas.xmlsoap.org/ws/2005/02/trust");
             }
+            
             if (element != null)
             {
                 element.AppendChild(document.CreateTextNode(signatureAlgorithm));
             }
+            
             return element;
         }
 
-        // Properties
         public SecurityAlgorithmSuite AlgorithmSuite
         {
             get

@@ -1,4 +1,9 @@
-﻿using System.IdentityModel.Services;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.IdentityModel.Services;
 using System.Web;
 
 namespace Thinktecture.IdentityModel.Web

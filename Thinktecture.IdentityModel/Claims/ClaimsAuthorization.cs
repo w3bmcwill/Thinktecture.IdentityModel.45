@@ -1,15 +1,12 @@
 ﻿/*
  * Copyright (c) Dominick Baier.  All rights reserved.
- * 
- * This code is licensed under the Microsoft Permissive License (Ms-PL)
- * 
- * SEE: http://www.microsoft.com/resources/sharedsource/licensingbasics/permissivelicense.mspx
- * 
+ * see license.txt
  */
 
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
+using System.IdentityModel.Services;
 using System.Security;
 using System.Security.Claims;
 using System.Threading;
@@ -29,7 +26,7 @@ namespace Thinktecture.IdentityModel.Claims
         {
             get
             {
-                return IdentityModelConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
+                return FederatedAuthentication.FederationConfiguration.IdentityConfiguration.ClaimsAuthorizationManager;
             }
         }
 

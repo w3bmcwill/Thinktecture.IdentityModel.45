@@ -1,4 +1,9 @@
-﻿namespace Thinktecture.IdentityModel.Constants
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+namespace Thinktecture.IdentityModel.Constants
 {
     public static class WSSecurity10Constants
     {

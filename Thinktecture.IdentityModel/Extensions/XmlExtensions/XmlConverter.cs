@@ -1,4 +1,9 @@
-﻿using System.Diagnostics.Contracts;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Text;
 using System.Xml;

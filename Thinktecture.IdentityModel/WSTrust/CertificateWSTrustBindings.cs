@@ -1,26 +1,29 @@
-﻿using System.Net;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 
-namespace Thinktecture.IdentityModel.Bindings
+namespace Thinktecture.IdentityModel.WSTrust
 {
-    public class CertificateWSTrustBinding : WSTrustBindingBase
+    public class CertificateWSTrustBinding : WSTrustBinding
     {
-        // Methods
         public CertificateWSTrustBinding()
             : this(SecurityMode.Message)
-        {
-        }
+        { }
 
         public CertificateWSTrustBinding(SecurityMode securityMode)
             : base(securityMode)
-        {
-        }
+        { }
 
         protected override void ApplyTransportSecurity(HttpTransportBindingElement transport)
         {
             transport.AuthenticationScheme = AuthenticationSchemes.Anonymous;
-            HttpsTransportBindingElement element = transport as HttpsTransportBindingElement;
+            
+            var element = transport as HttpsTransportBindingElement;
             if (element != null)
             {
                 element.RequireClientCertificate = true;
@@ -37,6 +40,7 @@ namespace Thinktecture.IdentityModel.Bindings
             {
                 return SecurityBindingElement.CreateCertificateOverTransportBindingElement();
             }
+            
             return null;
         }
     }

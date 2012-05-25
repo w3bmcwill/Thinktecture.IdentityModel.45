@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.IdentityModel.Tokens;
 
 namespace Thinktecture.IdentityModel.Tokens
