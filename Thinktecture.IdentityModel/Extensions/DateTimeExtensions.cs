@@ -5,9 +5,9 @@
 
 using System;
 
-namespace Thinktecture.IdentityModel
+namespace Thinktecture.IdentityModel.Extensions
 {
-	public static class DateTimeEpochExtensions
+	public static class DateTimeExtensions
 	{
 		/// <summary>
 		/// Converts the given date value to epoch time.

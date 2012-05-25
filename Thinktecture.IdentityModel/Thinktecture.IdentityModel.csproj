@@ -202,7 +202,7 @@
     <Compile Include="Constants\Algorithms.cs" />
     <Compile Include="Constants\JwtConstants.cs" />
     <Compile Include="Constants\SwtConstants.cs" />
-    <Compile Include="DateTimeEpochExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Constants\TokenTypes.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
     <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />

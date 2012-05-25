@@ -17,6 +17,7 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using Thinktecture.IdentityModel.Constants;
+using Thinktecture.IdentityModel.Extensions;
 
 namespace Thinktecture.IdentityModel.Tokens
 {
