@@ -1,4 +1,9 @@
-﻿using System.IdentityModel.Selectors;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
 
 namespace Thinktecture.IdentityModel.Tokens.Http
