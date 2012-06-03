@@ -33,7 +33,12 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 var authZ = request.Headers.Authorization;
                 if (authZ != null)
                 {
-                    return AuthenticateAuthorizationHeader(authZ.Scheme, authZ.Parameter);
+                    var principal = AuthenticateAuthorizationHeader(authZ.Scheme, authZ.Parameter);
+
+                    if (principal.Identity.IsAuthenticated)
+                    {
+                        return principal;
+                    }
                 }
             }
 
@@ -202,13 +207,19 @@ namespace Thinktecture.IdentityModel.Tokens.Http
             var dictionary = new Dictionary<string, string>();
             string[] pairs;
 
-            if (uri.Query.Contains('&'))
+            var query = uri.Query;
+            if (query[0] == '?')
             {
-                pairs = uri.Query.Split('&');
+                query = query.Substring(1);
+            }
+
+            if (query.Contains('&'))
+            {
+                pairs = query.Split('&');
             }
             else
             {
-                pairs = new string[] { uri.Query };
+                pairs = new string[] { query };
             }
 
             foreach (var pair in pairs)

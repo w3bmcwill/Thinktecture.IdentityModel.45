@@ -182,10 +182,6 @@
     <Reference Include="System.ServiceModel">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.ServiceModel.Activation" />
-    <Reference Include="System.ServiceModel.Web">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
@@ -202,11 +198,18 @@
     <Compile Include="Claims\AnonymousClaimsPrincipal.cs" />
     <Compile Include="Constants\Algorithms.cs" />
     <Compile Include="Constants\JwtConstants.cs" />
+    <Compile Include="Constants\OAuth2Constants.cs" />
     <Compile Include="Constants\SwtConstants.cs" />
+    <Compile Include="Extensions\ConsoleExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Constants\TokenTypes.cs" />
+    <Compile Include="Http\AccessTokenResponse.cs" />
+    <Compile Include="Http\BasicAuthenticationHeaderValue.cs" />
+    <Compile Include="Http\OAuth2Client.cs" />
+    <Compile Include="Tokens\Http\AuthenticationHandler.cs" />
     <Compile Include="Tokens\Http\AuthenticationOptionMapping.cs" />
     <Compile Include="Tokens\Http\AuthenticationOptions.cs" />
+    <Compile Include="Tokens\Http\Copy of AuthenticationHandler.cs" />
     <Compile Include="Tokens\Http\HttpAuthentication.cs" />
     <Compile Include="Tokens\Http\AuthenticationConfiguration.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />

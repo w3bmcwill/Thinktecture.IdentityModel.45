@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,8 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         private bool _hasClientCert;
 
         public List<AuthenticationOptionMapping> Mappings { get; set; }
+        public string DefaultAuthenticationScheme { get; set; }
+        public ClaimsAuthenticationManager ClaimsAuthenticationManager { get; set; }
 
         #region HasMapping Properties
         public bool HasAuthorizationHeaderMapping
@@ -52,10 +55,43 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         public AuthenticationConfiguration()
         {
             Mappings = new List<AuthenticationOptionMapping>();
+            DefaultAuthenticationScheme = "unspecified";
         }
 
         public void AddAccessKey(SimpleSecurityTokenHandler handler, AuthenticationOptions options)
         {
+            AddMapping(new AuthenticationOptionMapping
+            {
+                TokenHandler = new SecurityTokenHandlerCollection { handler },
+                Options = options
+            });
+        }
+
+        public void AddAccessKey(SimpleSecurityTokenHandler.ValidateTokenDelegate validateTokenDelegate, AuthenticationOptions options)
+        {
+            AddMapping(new AuthenticationOptionMapping
+            {
+                TokenHandler = new SecurityTokenHandlerCollection { new SimpleSecurityTokenHandler("", validateTokenDelegate) },
+                Options = options
+            });
+        }
+
+        public void AddSimpleWebToken(string issuer, string audience, string signingKey, AuthenticationOptions options)
+        {
+            var config = new SecurityTokenHandlerConfiguration();
+            var registry = new WebTokenIssuerNameRegistry();
+            registry.AddTrustedIssuer(issuer, issuer);
+            config.IssuerNameRegistry = registry;
+
+            var issuerResolver = new WebTokenIssuerTokenResolver();
+            issuerResolver.AddSigningKey(issuer, signingKey);
+            config.IssuerTokenResolver = issuerResolver;
+
+            config.AudienceRestriction.AllowedAudienceUris.Add(new Uri(audience));
+
+            var handler = new SimpleWebTokenHandler();
+            handler.Configuration = config;
+
             AddMapping(new AuthenticationOptionMapping
             {
                 TokenHandler = new SecurityTokenHandlerCollection { handler },
@@ -97,12 +133,24 @@ namespace Thinktecture.IdentityModel.Tokens.Http
             });
         }
 
-        public void AddClientCertificateHandler(SecurityTokenHandler handler)
+        public void AddClientCertificate(SecurityTokenHandler handler)
         {
             AddMapping(new AuthenticationOptionMapping
             {
                 TokenHandler = new SecurityTokenHandlerCollection { handler },
                 Options = AuthenticationOptions.ForClientCertificate()
+            });
+        }
+
+        public void AddSaml2(SecurityTokenHandlerConfiguration configuration, AuthenticationOptions options)
+        {
+           var handler = new HttpSaml2SecurityTokenHandler();
+            handler.Configuration = configuration;
+
+            AddMapping(new AuthenticationOptionMapping
+            {
+                TokenHandler = new SecurityTokenHandlerCollection { handler },
+                Options = options
             });
         }
 

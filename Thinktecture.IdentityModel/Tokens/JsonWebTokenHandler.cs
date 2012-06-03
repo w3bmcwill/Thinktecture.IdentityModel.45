@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
 using System.IO;
@@ -136,6 +137,8 @@ namespace Thinktecture.IdentityModel.Tokens
             }
 
             var json = sb.ToString();
+            Debug.WriteLine(json);
+
             return Base64Url.Encode(Encoding.UTF8.GetBytes(json));
         }
 
@@ -155,6 +158,8 @@ namespace Thinktecture.IdentityModel.Tokens
             }
 
             var json = sb.ToString();
+            Debug.WriteLine(json);
+
             return Base64Url.Encode(Encoding.UTF8.GetBytes(json));
         }
 
@@ -375,7 +380,7 @@ namespace Thinktecture.IdentityModel.Tokens
             }
 
             // check expiration
-            if (jwt.ValidTo != null)
+            if (jwt.ExpirationTime.HasValue)
             {
                 if (DateTime.Compare(jwt.ValidTo, DateTime.UtcNow) <= 0)
                 {
