@@ -1,0 +1,10 @@
+﻿<Window x:Class="IdSrvJSNotifyClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="441" Width="760">
+    <Grid>
+        <TextBox Height="361" HorizontalAlignment="Left" Margin="142,24,0,0" Name="_txtDebug" VerticalAlignment="Top" Width="581" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" />
+        <Button Content="Call Service" Height="23" HorizontalAlignment="Left" Margin="12,68,0,0" Name="_btnCallService" VerticalAlignment="Top" Width="108" Click="_btnCallService_Click" />
+        <Button Content="Sign In" Height="23" HorizontalAlignment="Left" Margin="12,24,0,0" Name="_btnSignin" VerticalAlignment="Top" Width="108"  Click="_btnSignin_Click" />
+    </Grid>
+</Window>
