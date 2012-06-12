@@ -4,7 +4,7 @@ namespace Thinktecture.Samples
     public static class Constants
     {
         public const string WebHost = "adfs.leastprivilege.vm";
-        public const string SelfHost = "roadie:9000";
+        public const string SelfHost = "adfs.leastprivilege.vm:9000";
         public const string IdSrv = "identity.thinktecture.com";
         public const string ACS = "ttacssample.accesscontrol.windows.net";
         public const string ADFS = "adfs.leastprivilege.vm";
@@ -13,7 +13,7 @@ namespace Thinktecture.Samples
         public const string AcsSymmetricSigningKey = "yFvxu8Xkmo/xBSSPrzqZLSAiB4lgjR4PIi0Bn1RsUDI=";
 
         public const string Realm = "https://samples.thinktecture.com/webapisecurity/";
-        public const string ServiceBaseAddressWebHost = "https://" + WebHost + "/webapisecurity/api/";
-        public const string ServiceBaseAddressSelfHost = "http://" + SelfHost + "/services/api/";
+        public const string WebHostBaseAddress = "https://" + WebHost + "/webapisecurity/api/";
+        public const string SelfHostBaseAddress = "https://" + SelfHost + "/webapisecurity/api/";
     }
 }

@@ -44,7 +44,7 @@ namespace IdSrvJSNotifyClient
 
         private void _btnCallService_Click(object sender, RoutedEventArgs e)
         {
-            var client = new HttpClient { BaseAddress = new Uri(Constants.ServiceBaseAddressWebHost) };
+            var client = new HttpClient { BaseAddress = new Uri(Constants.WebHostBaseAddress) };
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("IdSrv", _response.AccessToken);
 
             var response = client.GetAsync("identity").Result;

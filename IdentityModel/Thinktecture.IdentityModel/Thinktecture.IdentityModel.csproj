@@ -81,7 +81,8 @@
     <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
     <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
     <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
-    <DocumentationFile>..\build\debug\Thinktecture.IdentityModel.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeContractsContainerAnalysis>False</CodeContractsContainerAnalysis>
@@ -175,6 +176,7 @@
     </Reference>
     <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -196,6 +198,7 @@
   <ItemGroup>
     <Compile Include="Base64Url.cs" />
     <Compile Include="Claims\AnonymousClaimsPrincipal.cs" />
+    <Compile Include="Claims\IdentityFactory.cs" />
     <Compile Include="Constants\Algorithms.cs" />
     <Compile Include="Constants\JwtConstants.cs" />
     <Compile Include="Constants\OAuth2Constants.cs" />
@@ -213,6 +216,7 @@
     <Compile Include="Tokens\Http\HttpAuthentication.cs" />
     <Compile Include="Tokens\Http\AuthenticationConfiguration.cs" />
     <Compile Include="Clients\WrapClient.cs" />
+    <Compile Include="Tokens\Http\SessionAuthenticationConfiguration.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
     <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />
     <Compile Include="WSTrust\KerberosWSTrustBinding.cs" />

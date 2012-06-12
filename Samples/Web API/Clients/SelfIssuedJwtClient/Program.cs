@@ -13,7 +13,8 @@ namespace JsonWebTokenClient
 {
     class Program
     {
-        static Uri _baseAddress = new Uri(Constants.ServiceBaseAddressWebHost);
+        static Uri _baseAddress = new Uri(Constants.WebHostBaseAddress);
+        //static Uri _baseAddress = new Uri(Constants.SelfHostBaseAddress);
 
         static void Main(string[] args)
         {

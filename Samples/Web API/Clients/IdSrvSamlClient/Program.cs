@@ -14,7 +14,8 @@ namespace IdSrvSamlClient
 {
     class Program
     {
-        static Uri _baseAddress = new Uri(Constants.ServiceBaseAddressWebHost);
+        static Uri _baseAddress = new Uri(Constants.WebHostBaseAddress);
+        //static Uri _baseAddress = new Uri(Constants.SelfHostBaseAddress);
 
         static EndpointAddress _idpEndpoint =
             new EndpointAddress(new Uri("https://" + Constants.IdSrv + "/idsrv/issue/wstrust/mixed/username"));

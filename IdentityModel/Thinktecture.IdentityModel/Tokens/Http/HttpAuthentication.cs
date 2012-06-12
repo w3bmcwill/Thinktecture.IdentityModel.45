@@ -5,6 +5,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IdentityModel.Services;
+using System.IdentityModel.Services.Tokens;
 using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Net.Http;
@@ -13,6 +16,7 @@ using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Thinktecture.IdentityModel.Claims;
 
 namespace Thinktecture.IdentityModel.Tokens.Http
@@ -257,5 +261,87 @@ namespace Thinktecture.IdentityModel.Tokens.Http
             var token = handler.ReadToken(tokenString);
             return new ClaimsPrincipal(handler.ValidateToken(token));
         }
+
+        #region Session
+        public SessionSecurityToken CreateSessionToken(ClaimsPrincipal principal)
+        {
+            var token = new SessionSecurityToken(principal, TimeSpan.FromHours(8));
+
+            // configure token
+
+            return token;
+        }
+
+        public void IssueSessionToken(SessionSecurityToken token, HttpResponseMessage response)
+        {
+            var handler = new MachineKeySessionSecurityTokenHandler();
+            var bytes = handler.WriteToken(token);
+
+            WriteInternal(bytes, "auth", "/", "", token.ValidTo, true, true, response);
+
+        }
+
+        public const int DefaultChunkSize = 2000;
+        internal void WriteInternal(byte[] value, string name, string path, string domain, DateTime expirationTime, bool secure, bool httpOnly, HttpResponseMessage response)
+        {
+            string cookieValue = Convert.ToBase64String(value);
+
+            //this.DeleteInternal(name, path, domain, requestCookies, responseCookies);
+
+            var cookies = new List<CookieHeaderValue>();
+            foreach (KeyValuePair<string, string> keyValuePair in this.GetCookieChunks(name, cookieValue))
+            {
+                CookieHeaderValue cookieHeader = new CookieHeaderValue(keyValuePair.Key, keyValuePair.Value);
+
+                cookieHeader.Secure = secure;
+                cookieHeader.HttpOnly = httpOnly;
+                cookieHeader.Path = path;
+
+                if (!string.IsNullOrEmpty(domain))
+                    cookieHeader.Domain = domain;
+                if (expirationTime != DateTime.MinValue)
+                    cookieHeader.Expires = expirationTime;
+
+                cookies.Add(cookieHeader);
+
+                //if (System.IdentityModel.Services.DiagnosticUtility.ShouldTrace(TraceEventType.Information))
+                //    TraceUtility.TraceEvent(TraceEventType.Information, 786438, (string)null, (TraceRecord)new ChunkedCookieHandlerTraceRecord(ChunkedCookieHandlerTraceRecord.Action.Writing, cookie, cookie.Path), (object)null);
+            }
+
+            response.Headers.AddCookies(cookies);
+        }
+
+        private IEnumerable<KeyValuePair<string, string>> GetCookieChunks(string baseName, string cookieValue)
+        {
+            int chunksRequired = CeilingDivide(cookieValue.Length, DefaultChunkSize);
+
+            //if (chunksRequired > 20 && System.IdentityModel.Services.DiagnosticUtility.ShouldTrace(TraceEventType.Warning))
+            //    TraceUtility.TraceString(TraceEventType.Warning, System.IdentityModel.Services.SR.GetString("ID8008"), new object[0]);
+
+            for (int i = 0; i < chunksRequired; ++i)
+                yield return new KeyValuePair<string, string>(GetChunkName(baseName, i), cookieValue.Substring(i * DefaultChunkSize, Math.Min(cookieValue.Length - i * DefaultChunkSize, DefaultChunkSize)));
+        }
+
+        public static int CeilingDivide(int dividend, int divisor)
+        {
+            int num = dividend % divisor;
+            int num2 = dividend / divisor;
+            if (num > 0)
+            {
+                num2++;
+            }
+            return num2;
+        }
+
+
+
+        private string GetChunkName(string baseName, int chunkIndex)
+        {
+            if (chunkIndex != 0)
+                return baseName + chunkIndex.ToString((IFormatProvider)CultureInfo.InvariantCulture);
+            else
+                return baseName;
+        }
+        #endregion
     }
 }

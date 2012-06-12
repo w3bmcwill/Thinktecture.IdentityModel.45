@@ -24,7 +24,8 @@ namespace AcsSamlToSwtClient
         static Uri _acsWrapEndpoint = new Uri("https://" + Constants.ACS + "/WRAPv0.9");
         static Uri _acsOAuth2Endpoint = new Uri("https://" + Constants.ACS + "/v2/OAuth2-13");
 
-        static Uri _baseAddress = new Uri(Constants.ServiceBaseAddressWebHost);
+        static Uri _baseAddress = new Uri(Constants.WebHostBaseAddress);
+        //static Uri _baseAddress = new Uri(Constants.SelfHostBaseAddress);
 
         static void Main(string[] args)
         {

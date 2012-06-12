@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using Resources.Security;
 using Thinktecture.IdentityModel;
+using Thinktecture.IdentityModel.Claims;
 using Thinktecture.IdentityModel.Tokens;
 using Thinktecture.IdentityModel.Tokens.Http;
 using Thinktecture.Samples;
@@ -20,7 +21,6 @@ namespace WebApiSecurity
         public static void ConfigureGlobal(HttpConfiguration globalConfig)
         {
             globalConfig.MessageHandlers.Add(new AuthenticationHandler(CreateConfiguration()));
-            globalConfig.Filters.Add(new SecurityExceptionFilter());
         }
 
         public static AuthenticationConfiguration CreateConfiguration()
@@ -29,25 +29,25 @@ namespace WebApiSecurity
             {
                 DefaultAuthenticationScheme = "Basic",
             };
-            
-            #region Basic Authentication
+
+            #region BasicAuthentication
             config.AddBasicAuthentication((userName, password) => userName == password);
             #endregion
 
             #region SimpleWebToken
             config.AddSimpleWebToken(
-                "http://identity.thinktecture.com/trust",
-                Constants.Realm,
-                Constants.IdSrvSymmetricSigningKey,
-                AuthenticationOptions.ForAuthorizationHeader("IdSrv"));
+                issuer: "http://identity.thinktecture.com/trust",
+                audience: Constants.Realm,
+                signingKey: Constants.IdSrvSymmetricSigningKey,
+                options: AuthenticationOptions.ForAuthorizationHeader("IdSrv"));
             #endregion
 
             #region JsonWebToken
             config.AddJsonWebToken(
-                "http://selfissued.test",
-                Constants.Realm,
-                Constants.IdSrvSymmetricSigningKey,
-                AuthenticationOptions.ForAuthorizationHeader("JWT"));
+                issuer: "http://selfissued.test",
+                audience: Constants.Realm,
+                signingKey: Constants.IdSrvSymmetricSigningKey,
+                options: AuthenticationOptions.ForAuthorizationHeader("JWT"));
             #endregion
 
             #region IdentityServer SAML
@@ -64,25 +64,24 @@ namespace WebApiSecurity
 
             #region ACS SWT
             config.AddSimpleWebToken(
-                "https://" + Constants.ACS + "/",
-                Constants.Realm,
-                Constants.AcsSymmetricSigningKey,
-                AuthenticationOptions.ForAuthorizationHeader("ACS"));
+                issuer: "https://" + Constants.ACS + "/",
+                audience: Constants.Realm,
+                signingKey: Constants.AcsSymmetricSigningKey,
+                options: AuthenticationOptions.ForAuthorizationHeader("ACS"));
             #endregion
 
             #region AccessKey
-            var handler = new SimpleSecurityTokenHandler("my access key", token =>
+            var handler = new SimpleSecurityTokenHandler(token =>
+            {
+                if (ObfuscatingComparer.IsEqual(token, "accesskey123"))
                 {
-                    if (ObfuscatingComparer.IsEqual(token, "accesskey123"))
-                    {
-                        return new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim("customerid", "123")
-                    }, "Custom");
-                    }
+                    return IdentityFactory.Create("Custom",
+                        new Claim("customerid", "123"),
+                        new Claim("email", "foo@customer.com"));
+                }
 
-                    return null;
-                });
+                return null;
+            });
 
             config.AddAccessKey(handler, AuthenticationOptions.ForQueryString("key"));
             #endregion

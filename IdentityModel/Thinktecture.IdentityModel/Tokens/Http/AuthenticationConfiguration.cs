@@ -24,6 +24,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         public List<AuthenticationOptionMapping> Mappings { get; set; }
         public string DefaultAuthenticationScheme { get; set; }
         public ClaimsAuthenticationManager ClaimsAuthenticationManager { get; set; }
+        public bool InheritHostClientIdentity { get; set; }
 
         #region HasMapping Properties
         public bool HasAuthorizationHeaderMapping
@@ -56,6 +57,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         {
             Mappings = new List<AuthenticationOptionMapping>();
             DefaultAuthenticationScheme = "unspecified";
+            InheritHostClientIdentity = true;
         }
 
         public void AddAccessKey(SimpleSecurityTokenHandler handler, AuthenticationOptions options)

@@ -6,8 +6,10 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Thinktecture.IdentityModel.Claims;
 
 namespace Thinktecture.IdentityModel.Tokens.Http
 {
@@ -22,6 +24,11 @@ namespace Thinktecture.IdentityModel.Tokens.Http
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            if (_authN.Configuration.InheritHostClientIdentity == false)
+            {
+                Thread.CurrentPrincipal = AnonymousClaimsPrincipal.Create();
+            }
+
             try
             {
                 // try to authenticate

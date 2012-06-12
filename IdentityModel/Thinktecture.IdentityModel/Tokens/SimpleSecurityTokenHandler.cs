@@ -22,6 +22,10 @@ namespace Thinktecture.IdentityModel.Tokens
             : this(identifier, null)
         { }
 
+        public SimpleSecurityTokenHandler(ValidateTokenDelegate validator) 
+            : this(Guid.NewGuid().ToString(), validator)
+        { }
+
         public SimpleSecurityTokenHandler(string identifier, ValidateTokenDelegate validator)
         {
             _identifier = new string[] { identifier };

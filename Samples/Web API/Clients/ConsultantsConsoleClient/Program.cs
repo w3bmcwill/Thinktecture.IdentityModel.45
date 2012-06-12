@@ -30,7 +30,7 @@ namespace ConsultantsConsoleClient
             string.Format("Using resource as {0}\n\n", userName).ConsoleYellow();
 
             // set up the client
-            var client = new HttpClient { BaseAddress = new Uri(Constants.ServiceBaseAddressWebHost) };
+            var client = new HttpClient { BaseAddress = new Uri(Constants.WebHostBaseAddress) };
 
             if (!userName.Equals("anonymous"))
             {

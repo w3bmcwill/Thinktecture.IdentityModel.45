@@ -13,8 +13,7 @@ namespace Thinktecture.IdentityModel
         StoreLocation _location;
         StoreName _name;
         X509FindType _findType;
-        bool _validOnly;
-
+        
         public X509CertificatesFinder(StoreLocation location, StoreName name, X509FindType findType)
         {
             _location = location;

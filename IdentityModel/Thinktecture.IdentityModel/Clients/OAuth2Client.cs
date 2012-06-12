@@ -63,13 +63,19 @@ namespace Thinktecture.IdentityModel.Clients
 
         private AccessTokenResponse CreateResponseFromJson(JObject json)
         {
-            return new AccessTokenResponse
+            var response = new AccessTokenResponse
             {
                 AccessToken = json["access_token"].ToString(),
-                //RefreshToken = json["refresh_token"].ToString(),
                 TokenType = json["token_type"].ToString(),
                 ExpiresIn = int.Parse(json["expires_in"].ToString())
             };
+
+            if (json["refresh_token"] != null)
+            {
+                response.RefreshToken = json["refresh_token"].ToString();
+            }
+
+            return response;
         }
     } 
 }
