@@ -81,6 +81,18 @@ namespace SelfHost
             config.AddSaml2(idsrvConfig, AuthenticationOptions.ForAuthorizationHeader("IdSrvSaml"));
             #endregion
 
+            #region ADFS SAML
+            var adfsRegistry = new ConfigurationBasedIssuerNameRegistry();
+            adfsRegistry.AddTrustedIssuer("8EC7F962CC083FF7C5997D8A4D5ED64B12E4C174", "ADFS");
+
+            var adfsConfig = new SecurityTokenHandlerConfiguration();
+            adfsConfig.AudienceRestriction.AllowedAudienceUris.Add(new Uri(Constants.Realm));
+            adfsConfig.IssuerNameRegistry = adfsRegistry;
+            adfsConfig.CertificateValidator = X509CertificateValidator.None;
+
+            config.AddSaml2(adfsConfig, AuthenticationOptions.ForAuthorizationHeader("AdfsSaml"));
+            #endregion
+
             #region ACS SWT
             config.AddSimpleWebToken(
                 issuer:     "https://" + Constants.ACS + "/",
@@ -94,7 +106,7 @@ namespace SelfHost
             {
                 if (ObfuscatingComparer.IsEqual(token, "accesskey123"))
                 {
-                    return IdentityFactory.Create("Custom",
+                    return Principal.Create("Custom",
                         new Claim("customerid", "123"),
                         new Claim("email", "foo@customer.com"));
                 }

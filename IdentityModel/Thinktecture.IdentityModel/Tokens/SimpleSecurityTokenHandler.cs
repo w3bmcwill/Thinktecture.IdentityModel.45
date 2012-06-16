@@ -14,7 +14,7 @@ namespace Thinktecture.IdentityModel.Tokens
     public class SimpleSecurityTokenHandler : SecurityTokenHandler
     {
         private string[] _identifier;
-        public delegate ClaimsIdentity ValidateTokenDelegate(string tokenString);
+        public delegate ClaimsPrincipal ValidateTokenDelegate(string tokenString);
 
         public ValidateTokenDelegate Validator { get; set; }
 
@@ -45,7 +45,7 @@ namespace Thinktecture.IdentityModel.Tokens
                 throw new ArgumentException("SecurityToken is not a SimpleSecurityToken");
             }
 
-            var identity = Validator(simpleToken.Value);
+            var identity = Validator(simpleToken.Value).Identity as ClaimsIdentity;
 
             if (identity != null)
             {

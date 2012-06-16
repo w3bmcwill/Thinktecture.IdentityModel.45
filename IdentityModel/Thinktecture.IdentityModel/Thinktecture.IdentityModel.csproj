@@ -197,8 +197,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64Url.cs" />
-    <Compile Include="Claims\AnonymousClaimsPrincipal.cs" />
-    <Compile Include="Claims\IdentityFactory.cs" />
+    <Compile Include="Claims\Identity.cs" />
+    <Compile Include="Clients\AccessControlService\IdentityProviderDiscoveryClient.cs" />
+    <Compile Include="Clients\AccessControlService\IdentityProviderInformation.cs" />
+    <Compile Include="Clients\AccessControlService\JsonNotifyRequestSecurityTokenResponse.cs" />
     <Compile Include="Constants\Algorithms.cs" />
     <Compile Include="Constants\JwtConstants.cs" />
     <Compile Include="Constants\OAuth2Constants.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="Tokens\Http\AuthenticationConfiguration.cs" />
     <Compile Include="Clients\WrapClient.cs" />
     <Compile Include="Tokens\Http\SessionAuthenticationConfiguration.cs" />
+    <Compile Include="Tokens\Http\TokenServiceConfiguration.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
     <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />
     <Compile Include="WSTrust\KerberosWSTrustBinding.cs" />

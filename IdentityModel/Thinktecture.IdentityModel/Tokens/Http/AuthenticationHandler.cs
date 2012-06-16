@@ -3,6 +3,7 @@
  * see license.txt
  */
 
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -26,7 +27,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         {
             if (_authN.Configuration.InheritHostClientIdentity == false)
             {
-                Thread.CurrentPrincipal = AnonymousClaimsPrincipal.Create();
+                Thread.CurrentPrincipal = Principal.Anonymous;
             }
 
             try
@@ -35,6 +36,11 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 // returns an anonymous principal if no credential was found
                 var principal = _authN.Authenticate(request);
 
+                if (principal == null)
+                {
+                    throw new InvalidOperationException("No principal set");
+                }
+
                 // run claims transformation
                 if (_authN.Configuration.ClaimsAuthenticationManager != null)
                 {
@@ -42,7 +48,10 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 }
 
                 // set the principal
-                Thread.CurrentPrincipal = principal;
+                if (principal.Identity.IsAuthenticated)
+                {
+                    Thread.CurrentPrincipal = principal;
+                }
             }
             catch
             {
@@ -69,7 +78,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 });
         }
 
-        private void SetAuthenticateHeader(HttpResponseMessage response)
+        protected virtual void SetAuthenticateHeader(HttpResponseMessage response)
         {
             response.Headers.WwwAuthenticate.Add(new AuthenticationHeaderValue(_authN.Configuration.DefaultAuthenticationScheme));
         }

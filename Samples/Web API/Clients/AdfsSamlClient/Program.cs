@@ -1,21 +1,22 @@
 ﻿using System;
+using System.IdentityModel.Protocols.WSTrust;
 using System.IdentityModel.Tokens;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.ServiceModel;
 using System.ServiceModel.Security;
-using Microsoft.IdentityModel.Protocols.WSTrust;
-using Microsoft.IdentityModel.Protocols.WSTrust.Bindings;
-using Microsoft.IdentityModel.SecurityTokenService;
-using Thinktecture.IdentityModel.Utility;
+using Resources;
+using Thinktecture.IdentityModel.Constants;
+using Thinktecture.IdentityModel.Extensions;
+using Thinktecture.IdentityModel.WSTrust;
 using Thinktecture.Samples;
-using Thinktecture.Samples.Resources.Data;
 
 namespace AdfsSamlClient
 {
     class Program
     {
-        static Uri _baseAddress = new Uri(Constants.ServiceBaseAddressWebHost);
+        static Uri _baseAddress = new Uri(Constants.WebHostBaseAddress);
+        //static Uri _baseAddress = new Uri(Constants.SelfHostBaseAddress);
         
         static EndpointAddress _idpEndpoint =
             new EndpointAddress("https://adfs.leastprivilege.vm/adfs/services/trust/13/windowstransport");
@@ -52,8 +53,8 @@ namespace AdfsSamlClient
             {
                 RequestType = RequestTypes.Issue,
                 KeyType = KeyTypes.Bearer,
-                /* TokenType = Microsoft.IdentityModel.Tokens.SecurityTokenTypes.Saml2TokenProfile11, */
-                AppliesTo = new EndpointAddress(Constants.Realm)
+                TokenType = TokenTypes.Saml2TokenProfile11,
+                AppliesTo = new EndpointReference(Constants.Realm)
             };
 
             var token = factory.CreateChannel().Issue(rst) as GenericXmlSecurityToken;

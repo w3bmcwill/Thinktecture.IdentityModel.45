@@ -3,10 +3,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Windows;
-using Thinktecture.IdentityModel.Http;
-using Thinktecture.IdentityModel.Http.Wpf;
+using AcsJsNotifyClient;
+using Resources;
+using Thinktecture.IdentityModel.Clients.AccessControlService;
 using Thinktecture.Samples;
-using Thinktecture.Samples.Resources.Data;
+
 
 namespace AcsJSNotifyClient
 {
@@ -37,7 +38,7 @@ namespace AcsJSNotifyClient
 
         private void _btnCallService_Click(object sender, RoutedEventArgs e)
         {
-            var client = new HttpClient { BaseAddress = new Uri(Constants.ServiceBaseAddressWebHost) };
+            var client = new HttpClient { BaseAddress = new Uri(Constants.WebHostBaseAddress) };
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("ACS", RSTR.SecurityTokenString);
 
             var response = client.GetAsync("identity").Result;

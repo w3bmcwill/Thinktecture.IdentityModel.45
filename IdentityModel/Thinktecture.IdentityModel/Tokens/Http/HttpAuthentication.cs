@@ -72,56 +72,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 }
             }
             
-            return AnonymousClaimsPrincipal.Create();
-        }
-
-        public ClaimsPrincipal Authenticate(Tuple<string, string> authorizationHeader, Dictionary<string, string> headers, Dictionary<string, string> queryString, X509Certificate2 clientCertificate)
-        {
-            if (Configuration.HasAuthorizationHeaderMapping)
-            {
-                if (authorizationHeader != null && !string.IsNullOrWhiteSpace(authorizationHeader.Item1))
-                {
-                    return AuthenticateAuthorizationHeader(authorizationHeader.Item1, authorizationHeader.Item2);
-                }
-            }
-
-            if (Configuration.HasHeaderMapping)
-            {
-                if (headers != null && headers.Count > 0)
-                {
-                    var principal = AuthenticateHeaders(headers);
-
-                    if (principal.Identity.IsAuthenticated)
-                    {
-                        return principal;
-                    }
-                }
-            }
-
-            if (Configuration.HasQueryStringMapping)
-            {
-                if (queryString != null && queryString.Count > 0)
-                {
-                    var principal = AuthenticateQueryStrings(queryString);
-
-                    if (principal.Identity.IsAuthenticated)
-                    {
-                        return principal;
-                    }
-                }
-            }
-
-            if (Configuration.HasClientCertificateMapping)
-            {
-                var principal = AuthenticateClientCertificate(clientCertificate);
-
-                if (principal.Identity.IsAuthenticated)
-                {
-                    return principal;
-                }
-            }
-
-            return AnonymousClaimsPrincipal.Create();
+            return Principal.Anonymous;
         }
 
         public ClaimsPrincipal AuthenticateAuthorizationHeader(string scheme, string credential)
@@ -134,11 +85,9 @@ namespace Thinktecture.IdentityModel.Tokens.Http
             }
             else
             {
-                return AnonymousClaimsPrincipal.Create();
+                return Principal.Anonymous;
             }
         }
-
-        
 
         public ClaimsPrincipal AuthenticateHeaders(Dictionary<string, string> headers)
         {
@@ -152,7 +101,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 }
             }
 
-            return AnonymousClaimsPrincipal.Create();
+            return Principal.Anonymous;
         }
 
         public ClaimsPrincipal AuthenticateHeaders(HttpRequestHeaders headers)
@@ -167,7 +116,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 }
             }
 
-            return AnonymousClaimsPrincipal.Create();
+            return Principal.Anonymous;
         }
 
         public ClaimsPrincipal AuthenticateQueryStrings(Dictionary<string, string> queryString)
@@ -185,7 +134,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 }
             }
 
-            return AnonymousClaimsPrincipal.Create();
+            return Principal.Anonymous;
         }
 
         public ClaimsPrincipal AuthenticateQueryStrings(Uri uri)
@@ -205,7 +154,19 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                 return new ClaimsPrincipal(identity);
             }
 
-            return AnonymousClaimsPrincipal.Create();
+            return Principal.Anonymous;
+        }
+
+        protected virtual bool IsTokenRequest(HttpRequestMessage request)
+        {
+            if (Configuration.EnableTokenService == false)
+            {
+                return false;
+            }
+
+            // parse URL against config
+
+            return false;
         }
 
         private Dictionary<string, string> CreateQueryStringDictionary(Uri uri)
