@@ -46,7 +46,7 @@ namespace SelfHost
             var config = new AuthenticationConfiguration
             {
                 DefaultAuthenticationScheme = "Basic",
-                InheritHostClientIdentity = false
+                EnableSessionToken = true
             };
 
             #region Basic Authentication

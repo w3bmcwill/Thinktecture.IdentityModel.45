@@ -27,7 +27,8 @@ namespace WebApiSecurity
         {
             var config = new AuthenticationConfiguration
             {
-                DefaultAuthenticationScheme = "Basic"
+                DefaultAuthenticationScheme = "Basic",
+                EnableSessionToken = true
             };
 
             #region BasicAuthentication

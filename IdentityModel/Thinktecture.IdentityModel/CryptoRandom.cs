@@ -13,6 +13,14 @@ namespace Thinktecture.IdentityModel
         private RNGCryptoServiceProvider _rng = new RNGCryptoServiceProvider();
         private byte[] _uint32Buffer = new byte[4];
 
+        public static byte[] CreateRandomKey(int length)
+        {
+            var bytes = new byte[length];
+            new RNGCryptoServiceProvider().GetBytes(bytes);
+
+            return bytes;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CryptoRandom"/> class.
         /// </summary>

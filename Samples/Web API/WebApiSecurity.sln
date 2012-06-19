@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcsJSNotifyClient", "Client
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdSrvJavaScriptOAuth2Client", "Clients\IdSrvJavaScriptOAuth2Client\IdSrvJavaScriptOAuth2Client.csproj", "{87992DE4-A7E4-49FE-A62A-BFD818DCBDE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionTokenClient", "Clients\SessionTokenClient\SessionTokenClient.csproj", "{63B401C8-C988-4353-81B1-23936F3BCB19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analysis (Debug)|Any CPU = Analysis (Debug)|Any CPU
@@ -119,6 +121,26 @@ Global
 		{5B5D2C9A-31F6-482E-921A-186889EC9CF3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5B5D2C9A-31F6-482E-921A-186889EC9CF3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5B5D2C9A-31F6-482E-921A-186889EC9CF3}.Release|x86.ActiveCfg = Release|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Analysis (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Analysis (Debug)|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Analysis (Debug)|Mixed Platforms.Build.0 = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Analysis (Debug)|x86.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug and Contracts|Any CPU.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug and Contracts|Any CPU.Build.0 = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug and Contracts|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug and Contracts|Mixed Platforms.Build.0 = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug and Contracts|x86.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{63B401C8-C988-4353-81B1-23936F3BCB19}.Release|x86.ActiveCfg = Release|Any CPU
 		{6403E394-4E3D-46DB-A27E-1681353B3AF5}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|x86
 		{6403E394-4E3D-46DB-A27E-1681353B3AF5}.Analysis (Debug)|Mixed Platforms.ActiveCfg = Debug|x86
 		{6403E394-4E3D-46DB-A27E-1681353B3AF5}.Analysis (Debug)|Mixed Platforms.Build.0 = Debug|x86
@@ -386,6 +408,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2E7EC6C4-ADE2-4DB0-A9D1-7AD113BA1822} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{45B7DC83-09FF-4D83-844A-A55F1CC98546} = {A6736E22-5193-4900-A791-A8609F75017C}
+		{63B401C8-C988-4353-81B1-23936F3BCB19} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{6403E394-4E3D-46DB-A27E-1681353B3AF5} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{6AFC737F-F23F-4FCD-B88F-D7CB602255B0} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{722DAFB4-9AC7-4332-B3C1-DD363CC6B2A0} = {A6736E22-5193-4900-A791-A8609F75017C}

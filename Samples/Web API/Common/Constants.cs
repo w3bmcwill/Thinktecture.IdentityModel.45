@@ -13,6 +13,7 @@ namespace Thinktecture.Samples
         public const string AcsSymmetricSigningKey = "yFvxu8Xkmo/xBSSPrzqZLSAiB4lgjR4PIi0Bn1RsUDI=";
 
         public const string Realm = "https://samples.thinktecture.com/webapisecurity/";
+        
         public const string WebHostBaseAddress = "https://" + WebHost + "/webapisecurity/api/";
         public const string SelfHostBaseAddress = "https://" + SelfHost + "/webapisecurity/api/";
     }

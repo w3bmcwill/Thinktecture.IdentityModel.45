@@ -185,6 +185,7 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -218,8 +219,7 @@
     <Compile Include="Tokens\Http\HttpAuthentication.cs" />
     <Compile Include="Tokens\Http\AuthenticationConfiguration.cs" />
     <Compile Include="Clients\WrapClient.cs" />
-    <Compile Include="Tokens\Http\SessionAuthenticationConfiguration.cs" />
-    <Compile Include="Tokens\Http\TokenServiceConfiguration.cs" />
+    <Compile Include="Tokens\Http\SessionTokenConfiguration.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
     <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />
     <Compile Include="WSTrust\KerberosWSTrustBinding.cs" />
