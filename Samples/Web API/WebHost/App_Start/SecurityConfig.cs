@@ -12,6 +12,7 @@ using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Claims;
 using Thinktecture.IdentityModel.Tokens;
 using Thinktecture.IdentityModel.Tokens.Http;
+using Thinktecture.IdentityModel.WebApi;
 using Thinktecture.Samples;
 
 namespace WebApiSecurity

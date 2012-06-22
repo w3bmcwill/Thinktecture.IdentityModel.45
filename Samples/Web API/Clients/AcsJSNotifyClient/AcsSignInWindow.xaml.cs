@@ -17,7 +17,7 @@ namespace AcsJsNotifyClient
 
         private List<IdentityProviderInformation> _providerList;
         private SynchronizationContext _syncContext;
-        public JsonNotifyRequestSecurityTokenResponse Response { get; set; }
+        public JSNotifyRequestSecurityTokenResponse Response { get; set; }
         
         public AcsSignInWindow()
         {
@@ -30,38 +30,23 @@ namespace AcsJsNotifyClient
             this.webBrowser.ObjectForScripting = interop;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(this.AcsNamespace)) throw new ArgumentException("Missing AcsNamespace");
             if (string.IsNullOrEmpty(this.Realm)) throw new ArgumentException("Missing Realm");
             
             this.Show();
             Mouse.OverrideCursor = Cursors.Wait;
-            
-            ThreadPool.QueueUserWorkItem(_ =>
-                {
-                    var disco = new IdentityProviderDiscoveryClient(this.AcsNamespace, this.Realm);
-                    disco.GetCompleted += this.OnDiscoveryCompleted;
-                    disco.GetAsync(IdentityProviderDiscoveryClient.Protocols.JavaScriptNotify);
-                });
-        }
 
-        private void OnDiscoveryCompleted(object sender, IdentityProviderDiscoveryClient.GetCompletedEventArgs e)
-        {
-            var s = sender as IdentityProviderDiscoveryClient;
-            s.GetCompleted -= OnDiscoveryCompleted;
-            _providerList = e.IdentityProvider;
-            
-            _syncContext.Post(o =>
-            {
-                this.DataContext = _providerList;
-                Mouse.OverrideCursor = Cursors.Arrow;
-            }, null);
+            var disco = new IdentityProviderDiscoveryClient(AcsNamespace, Realm);
+            _providerList = await disco.GetAsync(Protocols.JavaScriptNotify);
+            this.DataContext = _providerList;
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
         
         private void OnScriptNotify(object sender, ScriptNotifyEventArgs e)
         {
-            this.Response = JsonNotifyRequestSecurityTokenResponse.FromJson(e.Data);
+            this.Response = JSNotifyRequestSecurityTokenResponse.FromJson(e.Data);
             this.DialogResult = true;
             this.Close();
         }

@@ -1,4 +1,11 @@
-// written by Stephen Toub & Shawn Farkas
+/*
+ * originally written by Stephen Toub & Shawn Farkas
+ * 
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+
 
 using System;
 using System.Security.Cryptography;

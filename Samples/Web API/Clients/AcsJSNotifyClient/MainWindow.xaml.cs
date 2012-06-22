@@ -13,7 +13,7 @@ namespace AcsJSNotifyClient
 {
     public partial class MainWindow : Window
     {
-        public JsonNotifyRequestSecurityTokenResponse RSTR { get; set; }
+        public JSNotifyRequestSecurityTokenResponse RSTR { get; set; }
 
         public MainWindow()
         {

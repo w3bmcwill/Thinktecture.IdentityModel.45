@@ -1,6 +1,6 @@
 ﻿var stsEndpoint = 'https://identity.thinktecture.com/idsrv/issue/oauth2',
     scope = 'https://samples.thinktecture.com/webapisecurity/',
-    serviceEndpoint = 'https://roadie/webapi/api/identity',
+    serviceEndpoint = 'https://adfs.leastprivilege.vm/webapisecurity/api/identity',
     authN,
     token;
 
@@ -39,8 +39,8 @@ function getIdentityClaimsFromService() {
             req.setRequestHeader('Authorization', authHeader);
         },
         success: function (result) {
-            $.each(result.Claims, function (key, val) {
-                $('#claims').append($('<li>').val(val.Value));
+            $.each(result.Claims, function () {
+                $('#claims').append($('<li>').text(this.ClaimType + ':  ' + this.Value));
             });
         },
         error: function (error) {

@@ -5,10 +5,12 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Threading;
 using System.Security;
+using Thinktecture.IdentityModel.WebApi;
+using Resources.Security;
 
 namespace Resources
 {
-    [Authorize]
+    [ApiAuthorize(typeof(ConsultantsAuthorizationManager))]
     public class ConsultantsController : ApiController
     {
         IConsultantsRepository _repository;
@@ -21,8 +23,6 @@ namespace Resources
         [AllowAnonymous]
         public IQueryable<Consultant> Get()
         {
-            throw new SecurityException("go away, bad guy!!");
-
             return _repository.GetAll().AsQueryable();
         }
 

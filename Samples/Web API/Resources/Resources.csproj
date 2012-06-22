@@ -54,10 +54,16 @@
     <Compile Include="Data\InMemoryConsultantsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Constants.cs" />
+    <Compile Include="Security\ConsultantsAuthorizationManager.cs" />
     <Compile Include="Security\ConsultantsClaimsTransformer.cs" />
     <Compile Include="Security\SecurityExceptionFilter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\IdentityModel\Thinktecture.IdentityModel\Thinktecture.IdentityModel.csproj">
+      <Project>{ac9a74df-4aab-43c8-b0ed-b7602721e545}</Project>
+      <Name>Thinktecture.IdentityModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

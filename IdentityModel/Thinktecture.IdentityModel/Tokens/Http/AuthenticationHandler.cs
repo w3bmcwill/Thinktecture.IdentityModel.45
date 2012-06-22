@@ -4,6 +4,7 @@
  */
 
 using System;
+using System.IdentityModel.Tokens;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -54,7 +55,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                     Thread.CurrentPrincipal = principal;
                 }
             }
-            catch
+            catch(SecurityTokenValidationException)
             {
                 return SendUnauthorizedResponse();
             }

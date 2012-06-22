@@ -199,7 +199,7 @@
   <ItemGroup>
     <Compile Include="Base64Url.cs" />
     <Compile Include="Claims\Identity.cs" />
-    <Compile Include="Clients\AccessControlService\IdentityProviderDiscoveryClient.cs" />
+    <Compile Include="Clients\AccessControlService\IdPDiscoveryClient.cs" />
     <Compile Include="Clients\AccessControlService\IdentityProviderInformation.cs" />
     <Compile Include="Clients\AccessControlService\JsonNotifyRequestSecurityTokenResponse.cs" />
     <Compile Include="Constants\Algorithms.cs" />
@@ -210,6 +210,8 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Constants\TokenTypes.cs" />
     <Compile Include="Clients\AccessTokenResponse.cs" />
+    <Compile Include="Http\CorsPreflightActionSelector.cs" />
+    <Compile Include="Http\EnableCorsAttribute.cs" />
     <Compile Include="Tokens\Http\BasicAuthenticationHeaderValue.cs" />
     <Compile Include="Clients\OAuth2Client.cs" />
     <Compile Include="Tokens\Http\AuthenticationHandler.cs" />
@@ -220,6 +222,13 @@
     <Compile Include="Tokens\Http\AuthenticationConfiguration.cs" />
     <Compile Include="Clients\WrapClient.cs" />
     <Compile Include="Tokens\Http\SessionTokenConfiguration.cs" />
+    <Compile Include="WebApi\ApiAuthorizeAttribute.cs" />
+    <Compile Include="WebApi\HttpAuthorizationContext.cs" />
+    <Compile Include="WebApi\HttpClaimsAuthorizationManager.cs" />
+    <Compile Include="WebApi\HttpConfigurationExtensions.cs" />
+    <Compile Include="WebApi\IAuthorizationManager.cs" />
+    <Compile Include="WebApi\PerControllerAuthorizationManager.cs" />
+    <Compile Include="WebApi\ReflectedAuthorizationManager.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
     <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />
     <Compile Include="WSTrust\KerberosWSTrustBinding.cs" />

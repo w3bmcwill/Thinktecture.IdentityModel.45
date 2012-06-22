@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Resources
 {
-    internal class InMemoryConsultantsRepository : IConsultantsRepository
+    public class InMemoryConsultantsRepository : IConsultantsRepository
     {
         static Consultants _consultants;
 
