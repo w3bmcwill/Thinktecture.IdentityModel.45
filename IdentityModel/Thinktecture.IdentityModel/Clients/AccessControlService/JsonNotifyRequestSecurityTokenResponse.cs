@@ -19,7 +19,7 @@ using Thinktecture.IdentityModel.Extensions;
 namespace Thinktecture.IdentityModel.Clients.AccessControlService
 {
     [DataContract]
-    public class JsonNotifyRequestSecurityTokenResponse
+    public class JSNotifyRequestSecurityTokenResponse
     {
         [DataMember(Name = "appliesTo", Order = 1)]
         public string AppliesTo { get; set; }
@@ -43,21 +43,21 @@ namespace Thinktecture.IdentityModel.Clients.AccessControlService
         public DateTime ValidTo { get; set; }
         public GenericXmlSecurityToken SecurityToken { get; set; }
 
-        public static JsonNotifyRequestSecurityTokenResponse FromJson(string jsonString)
+        public static JSNotifyRequestSecurityTokenResponse FromJson(string jsonString)
         {
-            JsonNotifyRequestSecurityTokenResponse rstr;
+            JSNotifyRequestSecurityTokenResponse rstr;
 
             var memoryStream = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-            var serializer = new DataContractJsonSerializer(typeof(JsonNotifyRequestSecurityTokenResponse));
+            var serializer = new DataContractJsonSerializer(typeof(JSNotifyRequestSecurityTokenResponse));
 
-            rstr = serializer.ReadObject(memoryStream) as JsonNotifyRequestSecurityTokenResponse;
+            rstr = serializer.ReadObject(memoryStream) as JSNotifyRequestSecurityTokenResponse;
             memoryStream.Close();
 
             ParseValues(rstr);
             return rstr;
         }
 
-        private static void ParseValues(JsonNotifyRequestSecurityTokenResponse rstr)
+        private static void ParseValues(JSNotifyRequestSecurityTokenResponse rstr)
         {
             rstr.ValidFrom = long.Parse(rstr.Created).ToDateTimeFromEpoch();
             rstr.ValidTo = long.Parse(rstr.Expires).ToDateTimeFromEpoch();
