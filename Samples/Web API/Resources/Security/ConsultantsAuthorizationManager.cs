@@ -6,13 +6,19 @@ using System.IdentityModel.Tokens;
 
 namespace Resources.Security
 {
-    public class ConsultantsAuthorizationManager : PerControllerAuthorizationManager
+    public class ConsultantsAuthorization : PerControllerAuthorization
     {
         IConsultantsRepository _repository;
 
-        public ConsultantsAuthorizationManager(IConsultantsRepository repository)
+        public ConsultantsAuthorization(IConsultantsRepository repository)
         {
             _repository = repository;
+        }
+
+        protected override bool Common(HttpActionContext context)
+        {
+            var p = ClaimsPrincipal.Current;
+            return p.HasClaim(AppClaimTypes.ReportsTo, "christian");
         }
 
         protected override bool Get(HttpActionContext context)
@@ -23,12 +29,6 @@ namespace Resources.Security
         protected override bool Put(HttpActionContext context)
         {
             var principal = ClaimsPrincipal.Current;
-
-            // authorize based on reportsTo claim
-            if (!principal.HasClaim(AppClaimTypes.ReportsTo, "christian"))
-            {
-                return false;
-            }
 
             // if no id is specified, nothing to do here
             if (context.ControllerContext.RouteData.Values.ContainsKey("id"))
@@ -41,8 +41,7 @@ namespace Resources.Security
 
         protected override bool Post(HttpActionContext context)
         {
-            var p = ClaimsPrincipal.Current;
-            return p.HasClaim(AppClaimTypes.ReportsTo, "christian");
+            return true;
         }
 
         protected override bool Delete(HttpActionContext context)

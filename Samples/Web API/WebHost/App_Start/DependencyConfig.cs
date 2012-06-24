@@ -30,9 +30,9 @@ namespace WebApiSecurity
 
         public object GetService(Type serviceType)
         {
-            if (serviceType == typeof(ConsultantsAuthorizationManager))
+            if (serviceType == typeof(ConsultantsAuthorization))
             {
-                return new ConsultantsAuthorizationManager(respository);
+                return new ConsultantsAuthorization(respository);
             }
             else
             {

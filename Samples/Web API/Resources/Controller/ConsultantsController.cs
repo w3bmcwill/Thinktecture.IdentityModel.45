@@ -10,7 +10,7 @@ using Resources.Security;
 
 namespace Resources
 {
-    [ApiAuthorize(typeof(ConsultantsAuthorizationManager))]
+    [ApiAuthorize(typeof(ConsultantsAuthorization))]
     public class ConsultantsController : ApiController
     {
         IConsultantsRepository _repository;

@@ -22,6 +22,7 @@ namespace WebApiSecurity
         public static void ConfigureGlobal(HttpConfiguration globalConfig)
         {
             globalConfig.MessageHandlers.Add(new AuthenticationHandler(CreateConfiguration()));
+            globalConfig.SetAuthorizationManager(new GlobalAuthorization(DefaultPolicy.Allow));
         }
 
         public static AuthenticationConfiguration CreateConfiguration()
