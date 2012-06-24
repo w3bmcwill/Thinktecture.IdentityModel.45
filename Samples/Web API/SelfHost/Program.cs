@@ -10,6 +10,8 @@ using Thinktecture.IdentityModel.Claims;
 using Thinktecture.IdentityModel.Tokens;
 using Thinktecture.IdentityModel.Tokens.Http;
 using Thinktecture.Samples;
+using Thinktecture.IdentityModel.WebApi;
+using Resources.Security;
 
 namespace SelfHost
 {
@@ -38,7 +40,14 @@ namespace SelfHost
 
         private static void ConfigureApis(HttpSelfHostConfiguration configuration)
         {
+            // authentication
             configuration.MessageHandlers.Add(new AuthenticationHandler(CreateConfiguration()));
+
+            // authorization
+            configuration.SetAuthorizationManager(new GlobalAuthorization(DefaultPolicy.Deny));
+
+            // dependency resolver for authorization manager
+            configuration.DependencyResolver = new AuthorizationDependencyResolver();
         }
 
         public static AuthenticationConfiguration CreateConfiguration()
