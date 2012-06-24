@@ -15,12 +15,19 @@ namespace Resources.Security
             : base(policy)
         { }
 
+        // global authorization rules
         protected override bool Default(HttpActionContext context)
         {
             var principal = ClaimsPrincipal.Current;
 
             // demand a name claim
             return principal.HasClaim(c => c.Type == ClaimTypes.Name);
+        }
+
+        // authorization rules for consultants controller
+        public bool ConsultantsAuthorization(HttpActionContext context)
+        {
+            return true;
         }
     }
 }
