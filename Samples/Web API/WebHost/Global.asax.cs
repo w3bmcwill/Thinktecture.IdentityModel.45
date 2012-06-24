@@ -16,7 +16,7 @@ namespace WebApiSecurity
         {
             AreaRegistration.RegisterAllAreas();
 
-            SecurityConfig.ConfigureGlobal(GlobalConfiguration.Configuration);
+            AuthenticationConfig.ConfigureGlobal(GlobalConfiguration.Configuration);
             DependencyConfig.Configure(GlobalConfiguration.Configuration);
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

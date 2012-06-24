@@ -11,7 +11,7 @@ namespace IdSrvOAuth2Client
 {
     class Program
     {
-        static Uri _baseAddress = new Uri(Constants.WebHostBaseAddress);
+        static Uri _baseAddress = new Uri(Resources.Constants.WebHostBaseAddress);
         //static Uri _baseAddress = new Uri(Constants.SelfHostBaseAddress);
 
         static Uri _oauth2Address = new Uri("https://" + Constants.IdSrv + "/idsrv/issue/oauth2/");

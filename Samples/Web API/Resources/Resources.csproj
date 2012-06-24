@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Controller\ConsultantsController.cs" />
     <Compile Include="Controller\IdentityController.cs" />
     <Compile Include="Data\Consultant.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Data\Identity.cs" />
     <Compile Include="Data\InMemoryConsultantsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AuthenticationConfig.cs" />
     <Compile Include="Security\AuthorizationDependencyResolver.cs" />
     <Compile Include="Security\Constants.cs" />
     <Compile Include="Security\ConsultantsAuthorizationManager.cs" />

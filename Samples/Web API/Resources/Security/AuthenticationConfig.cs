@@ -1,54 +1,19 @@
 ﻿using System;
 using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
-using System.Reflection;
 using System.Security.Claims;
 using System.Web.Http;
-using System.Web.Http.SelfHost;
 using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Claims;
-using Thinktecture.IdentityModel.Tokens;
 using Thinktecture.IdentityModel.Tokens.Http;
-using Thinktecture.Samples;
-using Thinktecture.IdentityModel.WebApi;
-using Resources.Security;
-using Resources;
 
-namespace SelfHost
+namespace Resources.Security
 {
-    class Program
+    public class AuthenticationConfig
     {
-        static void Main(string[] args)
+        public static void ConfigureGlobal(HttpConfiguration globalConfig)
         {
-            var config = new HttpSelfHostConfiguration(Constants.SelfHostBaseAddress);
-            var a = Assembly.Load("resources");
-
-            ConfigureApis(config);
-
-            config.Routes.MapHttpRoute(
-                "API Default",
-                "{controller}/{id}",
-                new { id = RouteParameter.Optional });
-
-            var server = new HttpSelfHostServer(config);
-
-            server.OpenAsync().Wait();
-
-            Console.WriteLine("Server is running.");
-            Console.ReadLine();
-
-        }
-
-        private static void ConfigureApis(HttpSelfHostConfiguration configuration)
-        {
-            // authentication
-            AuthenticationConfig.ConfigureGlobal(configuration);
-
-            // authorization
-            configuration.SetAuthorizationManager(new GlobalAuthorization(DefaultPolicy.Deny));
-
-            // dependency resolver for authorization manager
-            configuration.DependencyResolver = new AuthorizationDependencyResolver();
+            globalConfig.MessageHandlers.Add(new AuthenticationHandler(CreateConfiguration()));
         }
 
         public static AuthenticationConfiguration CreateConfiguration()
@@ -59,24 +24,24 @@ namespace SelfHost
                 EnableSessionToken = true
             };
 
-            #region Basic Authentication
+            #region BasicAuthentication
             config.AddBasicAuthentication((userName, password) => userName == password);
             #endregion
 
             #region SimpleWebToken
             config.AddSimpleWebToken(
-                issuer:     "http://identity.thinktecture.com/trust",
-                audience:   Constants.Realm,
+                issuer: "http://identity.thinktecture.com/trust",
+                audience: Constants.Realm,
                 signingKey: Constants.IdSrvSymmetricSigningKey,
-                options:    AuthenticationOptions.ForAuthorizationHeader("IdSrv"));
+                options: AuthenticationOptions.ForAuthorizationHeader("IdSrv"));
             #endregion
 
             #region JsonWebToken
             config.AddJsonWebToken(
-                issuer:     "http://selfissued.test",
-                audience:   Constants.Realm,
+                issuer: "http://selfissued.test",
+                audience: Constants.Realm,
                 signingKey: Constants.IdSrvSymmetricSigningKey,
-                options:    AuthenticationOptions.ForAuthorizationHeader("JWT"));
+                options: AuthenticationOptions.ForAuthorizationHeader("JWT"));
             #endregion
 
             #region IdentityServer SAML
@@ -105,14 +70,14 @@ namespace SelfHost
 
             #region ACS SWT
             config.AddSimpleWebToken(
-                issuer:     "https://" + Constants.ACS + "/",
-                audience:   Constants.Realm,
+                issuer: "https://" + Constants.ACS + "/",
+                audience: Constants.Realm,
                 signingKey: Constants.AcsSymmetricSigningKey,
-                options:    AuthenticationOptions.ForAuthorizationHeader("ACS"));
+                options: AuthenticationOptions.ForAuthorizationHeader("ACS"));
             #endregion
 
             #region AccessKey
-            var handler = new SimpleSecurityTokenHandler(token =>
+            config.AddAccessKey(token =>
             {
                 if (ObfuscatingComparer.IsEqual(token, "accesskey123"))
                 {
@@ -122,9 +87,7 @@ namespace SelfHost
                 }
 
                 return null;
-            });
-
-            config.AddAccessKey(handler, AuthenticationOptions.ForQueryString("key"));
+            }, AuthenticationOptions.ForQueryString("key"));
             #endregion
 
             return config;
