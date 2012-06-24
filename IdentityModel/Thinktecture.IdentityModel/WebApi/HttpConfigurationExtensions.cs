@@ -1,4 +1,9 @@
-﻿using System.Web.Http;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System.Web.Http;
 
 namespace Thinktecture.IdentityModel.WebApi
 {

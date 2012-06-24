@@ -1,24 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.Web.Http.Controllers;
 
 namespace Thinktecture.IdentityModel.WebApi
 {
-    public abstract class PerControllerAuthorizationManager : IAuthorizationManager
+    public abstract class PerControllerAuthorization : IAuthorizationManager
     {
         protected abstract bool Get(HttpActionContext context);
         protected abstract bool Put(HttpActionContext context);
         protected abstract bool Post(HttpActionContext context);
         protected abstract bool Delete(HttpActionContext context);
 
+        protected virtual bool Common(HttpActionContext context)
+        {
+            return true;
+        }
+
         public bool CheckAccess(HttpActionContext context)
         {
             try
             {
+                var result = Common(context);
+                if (result == false)
+                {
+                    return false;
+                }
+
                 switch (context.Request.Method.Method)
                 {
                     case "GET":

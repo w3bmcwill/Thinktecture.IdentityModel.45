@@ -1,7 +1,10 @@
-﻿using System;
-using System.Configuration;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
+using System;
 using System.Linq;
-using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 

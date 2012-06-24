@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
 using System.IdentityModel.Services;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 
 namespace Thinktecture.IdentityModel.WebApi

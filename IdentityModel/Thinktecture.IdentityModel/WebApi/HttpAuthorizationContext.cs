@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
 using System.Security.Claims;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 
 namespace Thinktecture.IdentityModel.WebApi

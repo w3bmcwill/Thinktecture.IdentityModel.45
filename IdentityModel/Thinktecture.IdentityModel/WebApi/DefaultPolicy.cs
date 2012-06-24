@@ -3,12 +3,12 @@
  * see license.txt
  */
 
-using System.Web.Http.Controllers;
 
 namespace Thinktecture.IdentityModel.WebApi
 {
-    public interface IAuthorizationManager
+    public enum DefaultPolicy
     {
-        bool CheckAccess(HttpActionContext context);
+        Allow,
+        Deny
     }
 }
