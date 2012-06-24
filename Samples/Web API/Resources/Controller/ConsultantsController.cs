@@ -7,6 +7,7 @@ using System.Threading;
 using System.Security;
 using Thinktecture.IdentityModel.WebApi;
 using Resources.Security;
+using System.Security.Claims;
 
 namespace Resources
 {
@@ -46,7 +47,7 @@ namespace Resources
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
             }
 
-            consultant.Owner = Thread.CurrentPrincipal.Identity.Name;
+            consultant.Owner = ClaimsPrincipal.Current.Identity.Name;
             var id = _repository.Add(consultant);
 
             var response = new HttpResponseMessage(HttpStatusCode.Created);
@@ -68,10 +69,11 @@ namespace Resources
             consultant.ID = id;
             consultant.Owner = Thread.CurrentPrincipal.Identity.Name;
 
-            if (oldConsultant.Owner != consultant.Owner)
-            {
-                throw new SecurityException("Not authorized to change record");
-            }
+            // check moved to authorization manager
+            //if (oldConsultant.Owner != consultant.Owner)
+            //{
+            //    throw new SecurityException("Not authorized to change record");
+            //}
             
             _repository.Update(consultant);
         }
