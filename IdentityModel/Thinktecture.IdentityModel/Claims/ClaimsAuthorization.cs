@@ -42,7 +42,7 @@ namespace Thinktecture.IdentityModel.Claims
             Contract.Requires(!String.IsNullOrEmpty(action));
 
 
-            return CheckAccess(resource, action, Thread.CurrentPrincipal as ClaimsPrincipal);
+            return CheckAccess(resource, action, ClaimsPrincipal.Current);
         }
 
         /// <summary>

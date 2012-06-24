@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.IdentityModel.Services;
 using System.IdentityModel.Services.Tokens;
@@ -159,17 +160,17 @@ namespace Thinktecture.IdentityModel.Tokens.Http
             return Principal.Anonymous;
         }
 
-        public virtual ClaimsPrincipal AuthenticateQueryStrings(Dictionary<string, string> queryString)
+        public virtual ClaimsPrincipal AuthenticateQueryStrings(NameValueCollection queryString)
         {
             SecurityTokenHandlerCollection handlers;
 
             if (queryString != null)
             {
-                foreach (var param in queryString)
+                foreach (string param in queryString.Keys)
                 {
-                    if (Configuration.TryGetQueryStringMapping(param.Key, out handlers))
+                    if (Configuration.TryGetQueryStringMapping(param, out handlers))
                     {
-                        return InvokeHandler(handlers, param.Value);
+                        return InvokeHandler(handlers, queryString[param]);
                     }
                 }
             }
@@ -177,10 +178,27 @@ namespace Thinktecture.IdentityModel.Tokens.Http
             return Principal.Anonymous;
         }
 
+        //public virtual ClaimsPrincipal AuthenticateQueryStrings(Dictionary<string, string> queryString)
+        //{
+        //    SecurityTokenHandlerCollection handlers;
+
+        //    if (queryString != null)
+        //    {
+        //        foreach (var param in queryString)
+        //        {
+        //            if (Configuration.TryGetQueryStringMapping(param.Key, out handlers))
+        //            {
+        //                return InvokeHandler(handlers, param.Value);
+        //            }
+        //        }
+        //    }
+
+        //    return Principal.Anonymous;
+        //}
+
         public virtual ClaimsPrincipal AuthenticateQueryStrings(Uri uri)
         {
-            var qparams = CreateQueryStringDictionary(uri);
-            return AuthenticateQueryStrings(qparams);
+            return AuthenticateQueryStrings(uri.ParseQueryString());
         }
 
         public virtual ClaimsPrincipal AuthenticateClientCertificate(X509Certificate2 certificate)

@@ -1,9 +1,10 @@
-﻿using System;
+﻿/*
+ * Copyright (c) Dominick Baier.  All rights reserved.
+ * see license.txt
+ */
+
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Thinktecture.IdentityModel.Claims
 {
@@ -13,17 +14,15 @@ namespace Thinktecture.IdentityModel.Claims
         {
             get
             {
-                {
-                    var claims = new List<Claim>
+                var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, "")
                     };
 
-                    var anonId = new ClaimsIdentity(claims);
-                    var anonPrincipal = new ClaimsPrincipal(anonId);
+                var anonId = new ClaimsIdentity(claims);
+                var anonPrincipal = new ClaimsPrincipal(anonId);
 
-                    return anonPrincipal;
-                }
+                return anonPrincipal;
             }
         }
 
