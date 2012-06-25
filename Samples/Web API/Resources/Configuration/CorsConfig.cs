@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Thinktecture.IdentityModel.Http.Cors.WebAPI;
+using Thinktecture.IdentityModel.Http.Cors.WebApi;
 
 namespace Resources.Configuration
 {
@@ -12,7 +12,7 @@ namespace Resources.Configuration
     {
         public static void RegisterGlobal(HttpConfiguration httpConfig)
         {
-            var corsConfig = new WebAPICorsConfiguration();
+            var corsConfig = new WebApiCorsConfiguration();
             corsConfig.RegisterGlobal(httpConfig);
             corsConfig.AllowAll();
         }  
