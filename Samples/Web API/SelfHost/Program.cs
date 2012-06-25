@@ -1,18 +1,12 @@
 ﻿using System;
-using System.IdentityModel.Selectors;
-using System.IdentityModel.Tokens;
 using System.Reflection;
-using System.Security.Claims;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
-using Thinktecture.IdentityModel;
-using Thinktecture.IdentityModel.Claims;
-using Thinktecture.IdentityModel.Tokens;
-using Thinktecture.IdentityModel.Tokens.Http;
-using Thinktecture.Samples;
-using Thinktecture.IdentityModel.WebApi;
-using Resources.Security;
 using Resources;
+using Resources.Configuration;
+using Resources.Security;
+using Thinktecture.IdentityModel.Tokens.Http;
+using Thinktecture.IdentityModel.WebApi;
 
 namespace SelfHost
 {

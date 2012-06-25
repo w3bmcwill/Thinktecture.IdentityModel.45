@@ -7,7 +7,7 @@ using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Claims;
 using Thinktecture.IdentityModel.Tokens.Http;
 
-namespace Resources.Security
+namespace Resources.Configuration
 {
     public class AuthenticationConfig
     {
