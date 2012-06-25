@@ -57,9 +57,6 @@ namespace Thinktecture.IdentityModel
 
             bool same = (hits == s1.Length * 2);
 
-            var rnd = new CryptoRandom();
-            Thread.Sleep(rnd.Next(0, 5));
-
             return same;
         }
     }
