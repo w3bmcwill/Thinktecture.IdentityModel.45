@@ -186,6 +186,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -212,6 +213,31 @@
     <Compile Include="Clients\AccessTokenResponse.cs" />
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Http\CorsPreflightActionSelector.cs" />
+    <Compile Include="Http\Cors\CorsAccessRequest.cs" />
+    <Compile Include="Http\Cors\CorsAccessResponse.cs" />
+    <Compile Include="Http\Cors\CorsConfiguration.cs" />
+    <Compile Include="Http\Cors\CorsConfigurationAllowProperties.cs" />
+    <Compile Include="Http\Cors\CorsConfigurationEntry.cs" />
+    <Compile Include="Http\Cors\CorsConfigurationExtensions.cs" />
+    <Compile Include="Http\Cors\CorsConstants.cs" />
+    <Compile Include="Http\Cors\CorsEngine.cs" />
+    <Compile Include="Http\Cors\CorsExtensions.cs" />
+    <Compile Include="Http\Cors\CorsFluentSettings.cs" />
+    <Compile Include="Http\Cors\CorsResourceSettings.cs" />
+    <Compile Include="Http\Cors\HttpContext\CorsHttpModule.cs" />
+    <Compile Include="Http\Cors\HttpContext\HttpContextConfiguration.cs" />
+    <Compile Include="Http\Cors\HttpContext\HttpContextRequest.cs" />
+    <Compile Include="Http\Cors\HttpContext\HttpContextResponse.cs" />
+    <Compile Include="Http\Cors\IHttpRequestWrapper.cs" />
+    <Compile Include="Http\Cors\IHttpResponseWrapper.cs" />
+    <Compile Include="Http\Cors\MVC\CorsAuthorizationFilterAttribute.cs" />
+    <Compile Include="Http\Cors\MVC\MVCConfiguration.cs" />
+    <Compile Include="Http\Cors\MVC\MVCRequest.cs" />
+    <Compile Include="Http\Cors\MVC\MVCResponse.cs" />
+    <Compile Include="Http\Cors\WebAPI\CorsMessageHandler.cs" />
+    <Compile Include="Http\Cors\WebAPI\WebAPICorsConfiguration.cs" />
+    <Compile Include="Http\Cors\WebAPI\WebAPIHttpRequest.cs" />
+    <Compile Include="Http\Cors\WebAPI\WebAPIHttpResponse.cs" />
     <Compile Include="Http\EnableCorsAttribute.cs" />
     <Compile Include="Tokens\Http\BasicAuthenticationHeaderValue.cs" />
     <Compile Include="Clients\OAuth2Client.cs" />
