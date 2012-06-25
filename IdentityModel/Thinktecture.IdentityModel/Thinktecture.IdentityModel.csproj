@@ -249,7 +249,7 @@
     <Compile Include="Tokens\Http\SessionTokenConfiguration.cs" />
     <Compile Include="WebApi\ApiAuthorizeAttribute.cs" />
     <Compile Include="WebApi\DefaultPolicy.cs" />
-    <Compile Include="WebApi\GlobalAuthorizationManager.cs" />
+    <Compile Include="WebApi\GlobalAuthorization.cs" />
     <Compile Include="WebApi\HttpAuthorizationContext.cs" />
     <Compile Include="WebApi\HttpClaimsAuthorizationManager.cs" />
     <Compile Include="WebApi\HttpConfigurationExtensions.cs" />

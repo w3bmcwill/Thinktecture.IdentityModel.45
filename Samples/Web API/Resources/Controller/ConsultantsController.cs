@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace Resources
 {
-    [ApiAuthorize(typeof(ConsultantsAuthorization))]
+    [ApiAuthorize(typeof(ConsultantsAuthorizationManager))]
     public class ConsultantsController : ApiController
     {
         IConsultantsRepository _repository;

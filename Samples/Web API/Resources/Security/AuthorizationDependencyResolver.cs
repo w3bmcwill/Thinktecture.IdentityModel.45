@@ -17,9 +17,9 @@ namespace Resources.Security
 
         public object GetService(Type serviceType)
         {
-            if (serviceType == typeof(ConsultantsAuthorization))
+            if (serviceType == typeof(ConsultantsAuthorizationManager))
             {
-                return new ConsultantsAuthorization(respository);
+                return new ConsultantsAuthorizationManager(respository);
             }
             else
             {

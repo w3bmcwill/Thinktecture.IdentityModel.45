@@ -1,21 +1,21 @@
-﻿using System.Security.Claims;
+﻿using System.IdentityModel.Tokens;
+using System.Linq;
+using System.Security.Claims;
 using System.Web.Http.Controllers;
 using Thinktecture.IdentityModel.WebApi;
-using System.Linq;
-using System.IdentityModel.Tokens;
 
 namespace Resources.Security
 {
-    public class ConsultantsAuthorization : PerControllerAuthorization
+    public class ConsultantsAuthorizationManager : PerControllerAuthorization
     {
         IConsultantsRepository _repository;
 
-        public ConsultantsAuthorization(IConsultantsRepository repository)
+        public ConsultantsAuthorizationManager(IConsultantsRepository repository)
         {
             _repository = repository;
         }
 
-        protected override bool Common(HttpActionContext context)
+        protected override bool Default(HttpActionContext context)
         {
             var p = ClaimsPrincipal.Current;
             return p.HasClaim(AppClaimTypes.ReportsTo, "christian");

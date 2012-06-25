@@ -9,12 +9,12 @@ using System.Web.Http.Controllers;
 
 namespace Thinktecture.IdentityModel.WebApi
 {
-    public class GlobalAuthorizationManager : IAuthorizationManager
+    public class GlobalAuthorization : IAuthorizationManager
     {
         DefaultPolicy _policy = DefaultPolicy.Deny;
         protected static ConcurrentDictionary<string, MethodInfo> _methods = new ConcurrentDictionary<string, MethodInfo>();
 
-        public GlobalAuthorizationManager(DefaultPolicy policy = DefaultPolicy.Deny)
+        public GlobalAuthorization(DefaultPolicy policy = DefaultPolicy.Deny)
         {
             _policy = policy;
         }
@@ -37,10 +37,9 @@ namespace Thinktecture.IdentityModel.WebApi
 
         protected virtual bool InvokeAuthorization(HttpActionContext context)
         {
-            var controller = Format(context.ControllerContext.ControllerDescriptor.ControllerName);
-            var manager = controller + "Authorization";
+            var name = GenerateName(context);
 
-            var method = GetMethodInfo(manager, context);
+            var method = GetMethodInfo(name, context);
             if (method == null)
             {
                 if (_policy == DefaultPolicy.Allow)
@@ -54,6 +53,12 @@ namespace Thinktecture.IdentityModel.WebApi
             }
 
             return InvokeMethod(method, context);
+        }
+
+        protected virtual string GenerateName(HttpActionContext context)
+        {
+            var controller = Format(context.ControllerContext.ControllerDescriptor.ControllerName);
+            return (controller + "Authorization");
         }
 
         protected virtual bool InvokeMethod(MethodInfo info, HttpActionContext context)

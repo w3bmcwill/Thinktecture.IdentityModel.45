@@ -15,7 +15,7 @@ namespace Thinktecture.IdentityModel.WebApi
         protected abstract bool Post(HttpActionContext context);
         protected abstract bool Delete(HttpActionContext context);
 
-        protected virtual bool Common(HttpActionContext context)
+        protected virtual bool Default(HttpActionContext context)
         {
             return true;
         }
@@ -24,7 +24,7 @@ namespace Thinktecture.IdentityModel.WebApi
         {
             try
             {
-                var result = Common(context);
+                var result = Default(context);
                 if (result == false)
                 {
                     return false;

@@ -9,9 +9,9 @@ using Thinktecture.IdentityModel.WebApi;
 
 namespace Resources.Security
 {
-    public class GlobalAuthorization : GlobalAuthorizationManager
+    public class GlobalAuthorizationManager : GlobalAuthorization
     {
-        public GlobalAuthorization(DefaultPolicy policy = DefaultPolicy.Deny)
+        public GlobalAuthorizationManager(DefaultPolicy policy = DefaultPolicy.Deny)
             : base(policy)
         { }
 

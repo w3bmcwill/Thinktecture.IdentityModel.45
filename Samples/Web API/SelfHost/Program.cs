@@ -40,7 +40,7 @@ namespace SelfHost
             configuration.MessageHandlers.Add(new AuthenticationHandler(authConfig));
 
             // authorization
-            configuration.SetAuthorizationManager(new GlobalAuthorization(DefaultPolicy.Deny));
+            configuration.SetAuthorizationManager(new GlobalAuthorizationManager(DefaultPolicy.Deny));
 
             // CORS
             CorsConfig.RegisterGlobal(configuration);

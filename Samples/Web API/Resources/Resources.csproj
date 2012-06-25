@@ -60,7 +60,7 @@
     <Compile Include="Security\Constants.cs" />
     <Compile Include="Security\ConsultantsAuthorizationManager.cs" />
     <Compile Include="Security\ConsultantsClaimsTransformer.cs" />
-    <Compile Include="Security\GlobalAuthorization.cs" />
+    <Compile Include="Security\GlobalAuthorizationManager.cs" />
     <Compile Include="Security\SecurityExceptionFilter.cs" />
   </ItemGroup>
   <ItemGroup>
