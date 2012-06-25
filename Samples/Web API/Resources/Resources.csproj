@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\CorsConfig.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controller\ConsultantsController.cs" />
     <Compile Include="Controller\IdentityController.cs" />

@@ -14,6 +14,7 @@ namespace WebApiSecurity
 
             AuthenticationConfig.ConfigureGlobal(GlobalConfiguration.Configuration);
             DependencyConfig.Configure(GlobalConfiguration.Configuration);
+            CorsConfig.RegisterGlobal(GlobalConfiguration.Configuration);
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

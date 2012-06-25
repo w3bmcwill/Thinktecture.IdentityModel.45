@@ -212,7 +212,6 @@
     <Compile Include="Constants\TokenTypes.cs" />
     <Compile Include="Clients\AccessTokenResponse.cs" />
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
-    <Compile Include="Http\CorsPreflightActionSelector.cs" />
     <Compile Include="Http\Cors\CorsAccessRequest.cs" />
     <Compile Include="Http\Cors\CorsAccessResponse.cs" />
     <Compile Include="Http\Cors\CorsConfiguration.cs" />
@@ -238,7 +237,6 @@
     <Compile Include="Http\Cors\WebAPI\WebAPICorsConfiguration.cs" />
     <Compile Include="Http\Cors\WebAPI\WebAPIHttpRequest.cs" />
     <Compile Include="Http\Cors\WebAPI\WebAPIHttpResponse.cs" />
-    <Compile Include="Http\EnableCorsAttribute.cs" />
     <Compile Include="Tokens\Http\BasicAuthenticationHeaderValue.cs" />
     <Compile Include="Clients\OAuth2Client.cs" />
     <Compile Include="Tokens\Http\AuthenticationHandler.cs" />
