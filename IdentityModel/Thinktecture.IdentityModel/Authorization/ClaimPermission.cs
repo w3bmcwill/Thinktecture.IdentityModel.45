@@ -14,10 +14,8 @@ using System.Security.Claims;
 using System.Security.Permissions;
 using System.Security.Policy;
 using System.Text;
-using System.Threading;
-using Thinktecture.IdentityModel.Extensions;
 
-namespace Thinktecture.IdentityModel.Claims
+namespace Thinktecture.IdentityModel.Authorization
 {
     /// <summary>
     /// Encapsulates calls to ClaimsAuthorizationManager with custom claim types in a CLR permission

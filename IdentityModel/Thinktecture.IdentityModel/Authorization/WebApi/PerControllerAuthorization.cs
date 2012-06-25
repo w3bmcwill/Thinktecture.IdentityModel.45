@@ -6,7 +6,7 @@
 using System;
 using System.Web.Http.Controllers;
 
-namespace Thinktecture.IdentityModel.WebApi
+namespace Thinktecture.IdentityModel.Authorization.WebApi
 {
     public abstract class PerControllerAuthorization : IAuthorizationManager
     {

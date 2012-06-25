@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
-using System.Threading;
-using System.Security;
-using Thinktecture.IdentityModel.WebApi;
-using Resources.Security;
 using System.Security.Claims;
+using System.Threading;
+using System.Web.Http;
+using Resources.Security;
+using Thinktecture.IdentityModel.Authorization.WebApi;
 
 namespace Resources
 {

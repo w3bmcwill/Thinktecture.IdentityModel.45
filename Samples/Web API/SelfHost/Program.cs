@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.SelfHost;
 using Resources;
 using Resources.Configuration;
 using Resources.Security;
+using Thinktecture.IdentityModel.Authorization;
+using Thinktecture.IdentityModel.Authorization.WebApi;
 using Thinktecture.IdentityModel.Tokens.Http;
-using Thinktecture.IdentityModel.WebApi;
 
 namespace SelfHost
 {

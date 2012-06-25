@@ -9,10 +9,8 @@ using System.Diagnostics.Contracts;
 using System.IdentityModel.Services;
 using System.Security;
 using System.Security.Claims;
-using System.Threading;
-using Thinktecture.IdentityModel.Extensions;
 
-namespace Thinktecture.IdentityModel.Claims
+namespace Thinktecture.IdentityModel.Authorization
 {
     /// <summary>
     /// Provides direct access methods for evaluating authorization policy

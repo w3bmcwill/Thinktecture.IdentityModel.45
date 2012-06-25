@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Http.Controllers;
-using Thinktecture.IdentityModel.WebApi;
+using Thinktecture.IdentityModel.Authorization.WebApi;
 
 namespace Resources.Security
 {

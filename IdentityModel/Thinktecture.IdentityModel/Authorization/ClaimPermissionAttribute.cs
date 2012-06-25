@@ -7,7 +7,7 @@ using System;
 using System.Security;
 using System.Security.Permissions;
 
-namespace Thinktecture.IdentityModel.Claims
+namespace Thinktecture.IdentityModel.Authorization
 {
     /// <summary>
     /// Permission Attribute for calling ClaimsAuthorizationManager with custom claim types

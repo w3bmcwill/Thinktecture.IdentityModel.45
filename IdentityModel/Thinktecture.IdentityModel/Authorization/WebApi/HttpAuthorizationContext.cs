@@ -6,7 +6,7 @@
 using System.Security.Claims;
 using System.Web.Http.Controllers;
 
-namespace Thinktecture.IdentityModel.WebApi
+namespace Thinktecture.IdentityModel.Authorization.WebApi
 {
     public class HttpAuthorizationContext : AuthorizationContext
     {

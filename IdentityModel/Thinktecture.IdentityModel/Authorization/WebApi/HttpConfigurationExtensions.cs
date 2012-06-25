@@ -5,7 +5,7 @@
 
 using System.Web.Http;
 
-namespace Thinktecture.IdentityModel.WebApi
+namespace Thinktecture.IdentityModel.Authorization.WebApi
 {
     public static class HttpConfigurationExtensions
     {

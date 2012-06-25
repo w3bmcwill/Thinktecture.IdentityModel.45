@@ -3,8 +3,7 @@
  * see license.txt
  */
 
-
-namespace Thinktecture.IdentityModel.WebApi
+namespace Thinktecture.IdentityModel.Authorization
 {
     public enum DefaultPolicy
     {
