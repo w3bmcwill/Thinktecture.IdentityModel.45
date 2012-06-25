@@ -199,7 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64Url.cs" />
-    <Compile Include="Claims\Principal.cs" />
+    <Compile Include="Principal.cs" />
     <Compile Include="Clients\AccessControlService\IdentityProviderDiscoveryClient.cs" />
     <Compile Include="Clients\AccessControlService\IdentityProviderInformation.cs" />
     <Compile Include="Clients\AccessControlService\JsonNotifyRequestSecurityTokenResponse.cs" />
@@ -263,7 +263,7 @@
     <Compile Include="WSTrust\WSTrustBindingBase.cs" />
     <Compile Include="Authorization\ClaimPermission.cs" />
     <Compile Include="Authorization\ClaimPermissionAttribute.cs" />
-    <Compile Include="Claims\AuthenticationInstantClaim.cs" />
+    <Compile Include="AuthenticationInstantClaim.cs" />
     <Compile Include="Authorization\ClaimsAuthorization.cs" />
     <Compile Include="CryptoRandom.cs" />
     <Compile Include="Extensions\RequestSecurityTokenResponseExtensions.cs" />

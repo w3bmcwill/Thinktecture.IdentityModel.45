@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace Thinktecture.IdentityModel.Claims
+namespace Thinktecture.IdentityModel
 {
     public static class Principal
     {

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Thinktecture.IdentityModel.Claims;
+using Thinktecture.IdentityModel;
 
 namespace Thinktecture.IdentityModel.Tokens.Http
 {

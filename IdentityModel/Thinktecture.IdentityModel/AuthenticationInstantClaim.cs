@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Xml;
 using Thinktecture.IdentityModel.Constants;
 
-namespace Thinktecture.IdentityModel.Claims
+namespace Thinktecture.IdentityModel
 {
     /// <summary>
     /// Helper class to create an authentication instant claim

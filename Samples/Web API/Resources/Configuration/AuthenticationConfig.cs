@@ -4,7 +4,6 @@ using System.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Web.Http;
 using Thinktecture.IdentityModel;
-using Thinktecture.IdentityModel.Claims;
 using Thinktecture.IdentityModel.Tokens.Http;
 
 namespace Resources.Configuration

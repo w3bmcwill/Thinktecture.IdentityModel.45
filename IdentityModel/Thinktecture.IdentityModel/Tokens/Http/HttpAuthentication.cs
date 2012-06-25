@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Routing;
 using Newtonsoft.Json.Linq;
-using Thinktecture.IdentityModel.Claims;
+using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Extensions;
 
 namespace Thinktecture.IdentityModel.Tokens.Http

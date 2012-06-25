@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using Thinktecture.IdentityModel.Claims;
+using Thinktecture.IdentityModel;
 
 namespace Thinktecture.IdentityModel.Tokens.Http
 {
