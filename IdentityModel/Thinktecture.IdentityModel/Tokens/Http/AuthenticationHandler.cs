@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Thinktecture.IdentityModel.Claims;
 
 namespace Thinktecture.IdentityModel.Tokens.Http
@@ -29,7 +30,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         {
             if (_authN.Configuration.InheritHostClientIdentity == false)
             {
-                Thread.CurrentPrincipal = Principal.Anonymous;
+                SetPrincipal(Principal.Anonymous);
             }
 
             try
@@ -52,7 +53,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
                     }
 
                     // else set the principal
-                    Thread.CurrentPrincipal = principal;
+                    SetPrincipal(principal);
                 }
             }
             catch(SecurityTokenValidationException)
@@ -102,6 +103,16 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         protected virtual void SetAuthenticateHeader(HttpResponseMessage response)
         {
             response.Headers.WwwAuthenticate.Add(new AuthenticationHeaderValue(_authN.Configuration.DefaultAuthenticationScheme));
+        }
+
+        protected virtual void SetPrincipal(ClaimsPrincipal principal)
+        {
+            Thread.CurrentPrincipal = principal;
+
+            if (HttpContext.Current != null)
+            {
+                HttpContext.Current.User = principal;
+            }
         }
     }
 }
