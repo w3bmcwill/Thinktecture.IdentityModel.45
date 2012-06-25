@@ -15,7 +15,6 @@ namespace SelfHost
         static void Main(string[] args)
         {
             var config = new HttpSelfHostConfiguration(Constants.SelfHostBaseAddress);
-            var a = Assembly.Load("resources");
 
             ConfigureApis(config);
 
@@ -42,6 +41,9 @@ namespace SelfHost
 
             // authorization
             configuration.SetAuthorizationManager(new GlobalAuthorization(DefaultPolicy.Deny));
+
+            // CORS
+            CorsConfig.RegisterGlobal(configuration);
 
             // dependency resolver for authorization manager
             configuration.DependencyResolver = new AuthorizationDependencyResolver();
