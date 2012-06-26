@@ -5,7 +5,7 @@
 
 using System.Web.Http.Controllers;
 
-namespace Thinktecture.IdentityModel.Authorization
+namespace Thinktecture.IdentityModel.Authorization.WebApi
 {
     public interface IAuthorizationManager
     {

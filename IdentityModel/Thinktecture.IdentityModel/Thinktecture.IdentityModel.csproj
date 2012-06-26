@@ -253,7 +253,7 @@
     <Compile Include="Authorization\WebApi\HttpAuthorizationContext.cs" />
     <Compile Include="Authorization\WebApi\HttpClaimsAuthorizationManager.cs" />
     <Compile Include="Authorization\WebApi\HttpConfigurationExtensions.cs" />
-    <Compile Include="Authorization\IAuthorizationManager.cs" />
+    <Compile Include="Authorization\WebApi\IAuthorizationManager.cs" />
     <Compile Include="Authorization\WebApi\PerControllerAuthorization.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
     <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />
