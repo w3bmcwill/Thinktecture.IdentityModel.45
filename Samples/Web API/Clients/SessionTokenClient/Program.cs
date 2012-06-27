@@ -18,37 +18,55 @@ namespace SessionTokenClient
         {
             while (true)
             {
+                Console.Clear();
+
                 Helper.Timer(() =>
                 {
-                    "Requesting session token\n".ConsoleYellow();
-
-                    var client = new HttpClient { BaseAddress = _baseAddress };
-                    client.DefaultRequestHeaders.Authorization = 
-                        new BasicAuthenticationHeaderValue("alice", "alice");
-
-                    var response = client.GetAsync("token").Result;
-                    response.EnsureSuccessStatusCode();
-
-                    var tokenResponse = response.Content.ReadAsStringAsync().Result;
-                    var json = JObject.Parse(tokenResponse);
-                    var token = json["access_token"].ToString();
-                    Console.WriteLine(json.ToString());
-
-                    "\n\nCalling service\n".ConsoleYellow();
-
-                    client = new HttpClient { BaseAddress = _baseAddress };
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Session", token);
-
-                    response = client.GetAsync("identity").Result;
-                    response.EnsureSuccessStatusCode();
-
-                    var identity = response.Content.ReadAsAsync<Identity>().Result;
-                    identity.ShowConsole();
-
+                    var token = RequestSessionToken();
+                    CallService(token);
                 });
 
                 Console.ReadLine();
             }
+        }
+
+        private static string RequestSessionToken()
+        {
+            "Requesting session token\n".ConsoleYellow();
+
+            var client = new HttpClient { BaseAddress = _baseAddress };
+            client.DefaultRequestHeaders.Authorization =
+                new BasicAuthenticationHeaderValue("alice", "alice");
+
+            var response = client.GetAsync("token").Result;
+            response.EnsureSuccessStatusCode();
+
+            var tokenResponse = response.Content.ReadAsStringAsync().Result;
+            var json = JObject.Parse(tokenResponse);
+            var token = json["access_token"].ToString();
+            var expiration = long.Parse(json["expires_in"].ToString()).ToDateTimeFromEpoch();
+
+            "\nSession Token:".ConsoleRed();
+            Console.WriteLine(json.ToString());
+
+            "\nExpiration Time:".ConsoleRed();
+            Console.WriteLine(expiration);
+
+            return token;
+        }
+
+        private static void CallService(string token)
+        {
+            "\n\nCalling service\n".ConsoleYellow();
+
+            var client = new HttpClient { BaseAddress = _baseAddress };
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Session", token);
+
+            var response = client.GetAsync("identity").Result;
+            response.EnsureSuccessStatusCode();
+
+            var identity = response.Content.ReadAsAsync<Identity>().Result;
+            identity.ShowConsole();
         }
     }
 }
