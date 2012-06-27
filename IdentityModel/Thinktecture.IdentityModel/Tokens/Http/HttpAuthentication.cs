@@ -236,7 +236,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
 
             // parse URL against config
             // todo: need something more robust
-            if (request.RequestUri.AbsoluteUri.EndsWith(Configuration.SessionToken.EndpointAddress, StringComparison.OrdinalIgnoreCase))
+            if (request.RequestUri.AbsolutePath.EndsWith(Configuration.SessionToken.EndpointAddress, StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
