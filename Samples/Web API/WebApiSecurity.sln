@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdSrvJavaScriptOAuth2Client
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionTokenClient", "Clients\SessionTokenClient\SessionTokenClient.csproj", "{63B401C8-C988-4353-81B1-23936F3BCB19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptSessionTokenClient", "Clients\JavaScriptSessionTokenClient\JavaScriptSessionTokenClient.csproj", "{B0385CB6-5295-4EE3-86E7-D6AB869F1424}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analysis (Debug)|Any CPU = Analysis (Debug)|Any CPU
@@ -301,6 +303,26 @@ Global
 		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545}.Release|x86.ActiveCfg = Release|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Analysis (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Analysis (Debug)|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Analysis (Debug)|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Analysis (Debug)|x86.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug and Contracts|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug and Contracts|Any CPU.Build.0 = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug and Contracts|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug and Contracts|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug and Contracts|x86.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424}.Release|x86.ActiveCfg = Release|Any CPU
 		{B0A809B5-4589-4135-A3AA-92372026F923}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|x86
 		{B0A809B5-4589-4135-A3AA-92372026F923}.Analysis (Debug)|Mixed Platforms.ActiveCfg = Debug|x86
 		{B0A809B5-4589-4135-A3AA-92372026F923}.Analysis (Debug)|Mixed Platforms.Build.0 = Debug|x86
@@ -415,6 +437,7 @@ Global
 		{87992DE4-A7E4-49FE-A62A-BFD818DCBDE7} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{8B0290D6-80FA-4E65-81BE-C712E00615FF} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{AC9A74DF-4AAB-43C8-B0ED-B7602721E545} = {19DC2EEC-9315-48CB-97B0-B77586A9F258}
+		{B0385CB6-5295-4EE3-86E7-D6AB869F1424} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{B0A809B5-4589-4135-A3AA-92372026F923} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{F18F8412-2558-4D3D-BA24-8BD0CA95B19A} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{FDE3D1B0-19AB-4A20-8269-ACAE791A13D6} = {A6736E22-5193-4900-A791-A8609F75017C}
