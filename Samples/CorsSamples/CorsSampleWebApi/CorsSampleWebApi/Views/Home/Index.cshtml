@@ -8,11 +8,11 @@
     <script src="~/Scripts/qunit.js"></script>
     <script src="~/Scripts/jQuery-1.7.2.js"></script>
     <script>
-        var ajaxUrl = 'http://localhost/CorsSampleWebApi/api/values1';
-        var simpleCorsUrl = 'http://127.0.0.1/CorsSampleWebApi/api/values1';
-        var simpleCorsUrl_allowcookieandresponseheader = 'http://127.0.0.1/CorsSampleWebApi/api/values2';
-        var preflightCorsUrl_allowput = 'http://127.0.0.1/CorsSampleWebApi/api/values3';
-        var preflightCorsUrl_allowcookiesandheaders = 'http://127.0.0.1/CorsSampleWebApi/api/values4';
+        var ajaxUrl = 'http://localhost:6118/api/values1';
+        var simpleCorsUrl = 'http://localhost:6118/api/values1';
+        var simpleCorsUrl_allowcookieandresponseheader = 'http://localhost:6118/api/values2';
+        var preflightCorsUrl_allowput = 'http://localhost:6118/api/values3';
+        var preflightCorsUrl_allowcookiesandheaders = 'http://localhost:6118/api/values4';
 
         function doAjax(settings) {
             settings = $.extend({
