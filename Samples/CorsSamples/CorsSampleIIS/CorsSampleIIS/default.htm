@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="Content/qunit.css" type="text/css" media="screen" />
+    <script src="Scripts/qunit.js"></script>
+    <script src="Scripts/jQuery-1.7.2.js"></script>
+    <script>
+        var ajaxUrl = 'http://localhost/CorsSampleIIS/handler1.ashx';
+        var simpleCorsUrl = 'http://127.0.0.1/CorsSampleIIS/handler1.ashx';
+        var simpleCorsUrl_allowcookieandresponseheader = 'http://127.0.0.1/CorsSampleIIS/handler2.ashx';
+        var preflightCorsUrl_allowput = 'http://127.0.0.1/CorsSampleIIS/handler3.ashx';
+        var preflightCorsUrl_allowcookiesandheaders = 'http://127.0.0.1/CorsSampleIIS/handler4.ashx';
+
+        function doAjax(settings) {
+            settings = $.extend({
+            }, settings);
+
+            return $.ajax(settings);
+        }
+
+        function assertDone(promise, msg) {
+            msg = msg || "expected success Ajax response";
+            promise.done(function () {
+                ok(true, msg);
+            });
+            promise.fail(function () {
+                ok(false, msg);
+            });
+            return promise;
+        }
+        function assertFail(promise, msg) {
+            msg = msg || "expected error Ajax response";
+            promise.done(function () {
+                ok(false, msg);
+            });
+            promise.fail(function () {
+                ok(true, msg);
+            });
+            return promise;
+        }
+
+        $(document).ready(function () {
+            $(document).ajaxSend(function () {
+                stop();
+            }).ajaxComplete(function () {
+                start();
+            });
+
+            module("Non-Cors (normal Ajax) Tests");
+            (function () {
+                test("GET handler1 should work", function () {
+                    assertDone(doAjax({
+                        url: ajaxUrl,
+                        type: "GET"
+                    }));
+                });
+                test("POST handler1 with contentType application/json should work", function () {
+                    assertDone(doAjax({
+                        url: ajaxUrl,
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ value: "foo" })
+                    }));
+                });
+                test("PUT handler1 with contentType application/json should work", function () {
+                    assertDone(doAjax({
+                        url: ajaxUrl,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ value: "foo" })
+                    }));
+                });
+                test("DELETE handler1 should work", function () {
+                    assertDone(doAjax({
+                        url: ajaxUrl,
+                        type: "DELETE",
+                        contentType: "application/json",
+                        data: JSON.stringify({ value: "foo" })
+                    }));
+                });
+            })();
+
+            module("Simple Cors (non-preflight) Tests");
+            (function () {
+                test("GET handler1 should work", function () {
+                    assertDone(doAjax({
+                        url: simpleCorsUrl,
+                        type: "GET"
+                    }));
+                });
+                test("POST handler1 with form-urlencoded should work", function () {
+                    assertDone(doAjax({
+                        url: simpleCorsUrl,
+                        type: "POST",
+                        data: { values: "foo" }
+                    }));
+                });
+                test("PUT handler1 with content type application/json should fail", function () {
+                    assertFail(doAjax({
+                        url: simpleCorsUrl,
+                        type: "PUT",
+                        contentType: "application/json"
+                    }));
+                });
+                test("GET handler1 with cookies should fail", function () {
+                    assertFail(doAjax({
+                        url: simpleCorsUrl,
+                        type: "GET",
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    }));
+                });
+                test("POST handler1 with contentType application/json should fail", function () {
+                    assertFail(doAjax({
+                        url: simpleCorsUrl,
+                        type: "POST",
+                        contentType: "application/json"
+                    }));
+                });
+                test("GET handler1 with Authorization request header should fail", function () {
+                    assertFail(doAjax({
+                        url: simpleCorsUrl,
+                        type: "GET",
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Authorization", "Basic 123");
+                        }
+                    }));
+                });
+                test("GET handler1 with Foo request header should fail", function () {
+                    assertFail(doAjax({
+                        url: simpleCorsUrl,
+                        type: "GET",
+                        headers: { "Foo": "foo" }
+                    }));
+                });
+                test("GET handler2 without cookies should work", function () {
+                    assertDone(doAjax({
+                        url: simpleCorsUrl_allowcookieandresponseheader,
+                        type: "GET"
+                    }));
+                });
+                test("GET handler2 with cookies should work", function () {
+                    assertDone(doAjax({
+                        url: simpleCorsUrl_allowcookieandresponseheader,
+                        type: "GET",
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    }));
+                });
+                test("GET handler2 with Foo response header should work", function () {
+                    assertDone(doAjax({
+                        url: simpleCorsUrl_allowcookieandresponseheader,
+                        type: "GET"
+                    })).done(function (result, status, xhr) {
+                        // FireFox has a bug where response headers aren't exposed, even if CORS allows
+                        //console.log(xhr.getResponseHeader("Content-Type"));
+                        equal(xhr.getResponseHeader("Foo"), "foo", "expected 'foo' for Foo response header (ignore this if you're in FireFox -- it's a bug in the browser)");
+                    });
+                });
+                test("GET handler2 with Bar response header should not work", function () {
+                    assertDone(doAjax({
+                        url: simpleCorsUrl_allowcookieandresponseheader,
+                        type: "GET"
+                    })).done(function (result, status, xhr) {
+                        equal(xhr.getResponseHeader("Bar"), null, "expected null for Bar response header");
+                    });
+                });
+            })();
+
+            module("Preflight Cors Tests");
+            (function () {
+                test("POST handler3 with content type application/json should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowput,
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" })
+                    }));
+                });
+
+                test("PUT handler3 with content type application/json should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowput,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" })
+                    }));
+                });
+
+                test("DELETE handler3 should not work", function () {
+                    assertFail(doAjax({
+                        url: preflightCorsUrl_allowput,
+                        type: "DELETE"
+                    }));
+                });
+
+                test("GET handler3 with Foo request header should not work", function () {
+                    assertFail(doAjax({
+                        url: preflightCorsUrl_allowput,
+                        type: "GET",
+                        headers: { "Foo": "foo" }
+                    }));
+                });
+
+                test("PUT handler3 with cookies should not work", function () {
+                    assertFail(doAjax({
+                        url: preflightCorsUrl_allowput,
+                        type: "PUT",
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    }));
+                });
+
+
+                test("POST handler4 with content type application/json should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" })
+                    }));
+                });
+
+                test("PUT handler4 with content type application/json should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" })
+                    }));
+                });
+
+                test("DELETE handler4 should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "DELETE"
+                    }));
+                });
+
+
+                test("POST handler4 with cookies and content type application/json should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" }),
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    }));
+                });
+
+                test("PUT handler4 with cookies and content type application/json should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" }),
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    }));
+                });
+
+                test("DELETE handler4 with cookies should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "DELETE",
+                        xhrFields: {
+                            withCredentials: true
+                        }
+                    }));
+                });
+
+                test("PUT handler4 with Authorization request header should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" }),
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Authorization", "Basic 123");
+                        }
+                    }));
+                });
+
+                test("PUT handler4 with Foo request header should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" }),
+                        headers: { Foo: "foo" }
+                    }));
+                });
+
+                test("PUT handler4 with Bar request header should fail", function () {
+                    assertFail(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" }),
+                        headers: { Bar: "bar" }
+                    }));
+                });
+
+                test("PUT handler4 with Foo response header should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" })
+                    })).done(function (result, status, xhr) {
+                        // FireFox has a bug where response headers aren't exposed, even if CORS allows
+                        //console.log(xhr.getResponseHeader("Content-Type"));
+                        equal(xhr.getResponseHeader("Foo"), "foo", "expected 'foo' for Foo response header (ignore this if you're in FireFox -- it's a bug in the browser)");
+                    });;
+                });
+
+                test("PUT handler4 with Bar response header should work", function () {
+                    assertDone(doAjax({
+                        url: preflightCorsUrl_allowcookiesandheaders,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({ values: "foo" })
+                    })).done(function (result, status, xhr) {
+                        equal(xhr.getResponseHeader("Bar"), null, "expected null for Bar response header");
+                    });;
+                });
+
+            })();
+        });
+    </script>
+
+</head>
+<body>
+    <h1 id="qunit-header">WebApi Cors Tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+</html>
