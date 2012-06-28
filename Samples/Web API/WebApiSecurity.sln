@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionTokenClient", "Clien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptSessionTokenClient", "Clients\JavaScriptSessionTokenClient\JavaScriptSessionTokenClient.csproj", "{B0385CB6-5295-4EE3-86E7-D6AB869F1424}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptClients", "Clients\JavaScriptClients\JavaScriptClients.csproj", "{3450FD3B-CC05-4870-9859-E1A672B5C499}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analysis (Debug)|Any CPU = Analysis (Debug)|Any CPU
@@ -83,6 +85,26 @@ Global
 		{2E7EC6C4-ADE2-4DB0-A9D1-7AD113BA1822}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2E7EC6C4-ADE2-4DB0-A9D1-7AD113BA1822}.Release|x86.ActiveCfg = Release|x86
 		{2E7EC6C4-ADE2-4DB0-A9D1-7AD113BA1822}.Release|x86.Build.0 = Release|x86
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Analysis (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Analysis (Debug)|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Analysis (Debug)|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Analysis (Debug)|x86.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug and Contracts|Any CPU.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug and Contracts|Any CPU.Build.0 = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug and Contracts|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug and Contracts|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug and Contracts|x86.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3450FD3B-CC05-4870-9859-E1A672B5C499}.Release|x86.ActiveCfg = Release|Any CPU
 		{45B7DC83-09FF-4D83-844A-A55F1CC98546}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|x86
 		{45B7DC83-09FF-4D83-844A-A55F1CC98546}.Analysis (Debug)|Mixed Platforms.ActiveCfg = Debug|x86
 		{45B7DC83-09FF-4D83-844A-A55F1CC98546}.Analysis (Debug)|Mixed Platforms.Build.0 = Debug|x86
@@ -429,6 +451,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2E7EC6C4-ADE2-4DB0-A9D1-7AD113BA1822} = {A6736E22-5193-4900-A791-A8609F75017C}
+		{3450FD3B-CC05-4870-9859-E1A672B5C499} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{45B7DC83-09FF-4D83-844A-A55F1CC98546} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{63B401C8-C988-4353-81B1-23936F3BCB19} = {A6736E22-5193-4900-A791-A8609F75017C}
 		{6403E394-4E3D-46DB-A27E-1681353B3AF5} = {A6736E22-5193-4900-A791-A8609F75017C}

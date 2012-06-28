@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Session Token client</title>
+</head>
+<body>
+    <div>
+    <h1>jQuery Session Token client</h1>
+    </div>
+    <div>
+        Username:
+        <input id="username" type="text" value="Alice" />
+        Password:
+        <input id="password" type="password" value="Alice" />
+        <input id="loginbutton" type="button" value="Get token (with UN/PW)" onclick="javascript:authenticate();" />
+    </div>
+    <div>
+        <input id="cleartokencache" type="button" value="Clear token cache" onclick="javascript:clearTokenCache();" />
+    </div>
+    <div>
+        <textarea id="sessionToken" cols="80" rows="10"></textarea>
+    </div>
+    <hr />
+    <div>
+        <input id="callService" type="button" value="Call service" onclick="javascript:callService();" />
+    </div>
+    <div>
+        <ul id="claims">
+        </ul>
+    </div>
+</body>
+
+<script type="text/javascript" src="scripts/namespaces.js"></script>
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.base64.min.js"></script>
+<script src="scripts/sessionTokenAuthentication.js" type="text/javascript"></script>
+<script src="scripts/sessionTokenClient.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/lawnchair-0.6.1.min.js"></script>
+</html>

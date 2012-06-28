@@ -103,7 +103,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug and Contracts|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\build\core\</OutputPath>
+    <OutputPath>..\build\debug\</OutputPath>
     <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -146,7 +146,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Analysis %28Debug%29|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\build\core\</OutputPath>
+    <OutputPath>..\build\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
