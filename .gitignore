@@ -4,4 +4,6 @@ packages/
 *.suo
 *.csproj.user
 build/
+TestResults/
 docs/
+*.mdf
