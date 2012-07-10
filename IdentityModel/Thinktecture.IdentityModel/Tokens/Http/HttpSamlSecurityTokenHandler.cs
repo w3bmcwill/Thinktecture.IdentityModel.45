@@ -11,12 +11,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Thinktecture.IdentityModel.Constants;
 
 namespace Thinktecture.IdentityModel.Tokens.Http
 {
     class HttpSamlSecurityTokenHandler : SamlSecurityTokenHandler
     {
-        private string[] _identifier = new string[] { "Saml" };
+        private string[] _identifier = new string[] 
+            { 
+                "Saml",
+                TokenTypes.OasisWssSaml11TokenProfile11,
+                TokenTypes.Saml11TokenProfile11
+            };
+
 
         public HttpSamlSecurityTokenHandler()
             : base()

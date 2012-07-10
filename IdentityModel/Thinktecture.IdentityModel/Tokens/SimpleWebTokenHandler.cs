@@ -26,7 +26,7 @@ namespace Thinktecture.IdentityModel.Tokens
     /// </summary>
     public class SimpleWebTokenHandler : SecurityTokenHandler
     {
-        private string[] _identifiers = new string[] { TokenTypes.SimpleWebToken };
+        private string[] _identifiers = new string[] { TokenTypes.SimpleWebToken, SwtConstants.SWT };
 
         public override string[] GetTokenTypeIdentifiers()
         {

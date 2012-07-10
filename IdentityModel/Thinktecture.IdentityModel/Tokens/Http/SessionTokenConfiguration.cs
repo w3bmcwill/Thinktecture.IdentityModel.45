@@ -9,7 +9,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
 {
     public class SessionTokenConfiguration
     {
-        SecurityTokenHandler _handler;
+        JsonWebTokenHandler _handler;
         object _handlerLock = new object();
 
         public TimeSpan DefaultTokenLifetime { get; set; }
@@ -19,7 +19,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         public string SigningKey { get; set; }
         public string IssuerName { get; set; }
 
-        public SecurityTokenHandler SecurityTokenHandler
+        public JsonWebTokenHandler SecurityTokenHandler
         {
             get
             {
@@ -55,7 +55,7 @@ namespace Thinktecture.IdentityModel.Tokens.Http
         public SessionTokenConfiguration()
         {
             DefaultTokenLifetime = TimeSpan.FromHours(10);
-            EndpointAddress = "token";
+            EndpointAddress = "/token";
             Scheme = "Session";
             Audience = new Uri("http://session.tt");
             IssuerName = "session issuer";

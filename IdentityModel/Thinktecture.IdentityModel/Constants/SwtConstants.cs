@@ -7,6 +7,8 @@ namespace Thinktecture.IdentityModel.Constants
 {
     public static class SwtConstants
     {
+        public const string SWT = "SWT";
+
         public const string Audience = "Audience";
         public const string ExpiresOn = "ExpiresOn";
         public const string Issuer = "Issuer";
