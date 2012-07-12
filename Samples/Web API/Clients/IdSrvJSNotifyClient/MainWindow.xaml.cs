@@ -17,7 +17,7 @@ namespace IdSrvJSNotifyClient
     {
         JSNotifySignInWindow _signin = new JSNotifySignInWindow
         {
-            EndpointUrl = new Uri(string.Format("https://{0}/idsrv/issue/jsnotify?realm={1}&tokenType={2}",
+            EndpointUrl = new Uri(string.Format("https://{0}/issue/jsnotify?realm={1}&tokenType={2}",
                                         Constants.IdSrv,
                                         Constants.Realm,
                                         "http://schemas.xmlsoap.org/ws/2009/11/swt-token-profile-1.0"))

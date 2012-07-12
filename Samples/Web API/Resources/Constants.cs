@@ -4,7 +4,7 @@
     {
         public const string WebHost = "adfs.leastprivilege.vm";
         public const string SelfHost = "adfs.leastprivilege.vm:9000";
-        public const string IdSrv = "identity.thinktecture.com";
+        public const string IdSrv = "identity.thinktecture.com/idsrv";
         public const string ACS = "ttacssample.accesscontrol.windows.net";
         public const string ADFS = "adfs.leastprivilege.vm";
 

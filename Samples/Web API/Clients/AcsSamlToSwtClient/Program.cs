@@ -17,7 +17,7 @@ namespace AcsSamlToSwtClient
     class Program
     {
         static EndpointAddress _idpEndpoint =
-            new EndpointAddress("https://" + Constants.IdSrv + "/idsrv/issue/wstrust/mixed/username");
+            new EndpointAddress("https://" + Constants.IdSrv + "/issue/wstrust/mixed/username");
 
         static Uri _acsBaseAddress = new Uri("https://" + Constants.ACS + "/");
 
