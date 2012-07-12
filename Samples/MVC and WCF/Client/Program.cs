@@ -10,7 +10,7 @@ namespace Client
     class Program
     {
         static string _idsrvEndpoint = "https://identity.thinktecture.com/idsrvsample/issue/wstrust/mixed/username";
-        static string _realm = "https://samples.thinktecture.com/wcf/";
+        static string _realm = "https://samples.thinktecture.com/mvc/";
 
         static void Main(string[] args)
         {
