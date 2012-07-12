@@ -238,8 +238,14 @@
     <Content Include="Views\User\Identity.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="tracing.config" />
+    <Content Include="Views\User\Delegation.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\IdentityModel\Thinktecture.IdentityModel\Thinktecture.IdentityModel.csproj">
+      <Project>{ac9a74df-4aab-43c8-b0ed-b7602721e545}</Project>
+      <Name>Thinktecture.IdentityModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
