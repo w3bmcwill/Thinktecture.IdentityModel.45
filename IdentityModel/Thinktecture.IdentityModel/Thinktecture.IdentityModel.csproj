@@ -254,6 +254,7 @@
     <Compile Include="Authorization\WebApi\HttpConfigurationExtensions.cs" />
     <Compile Include="Authorization\WebApi\IAuthorizationManager.cs" />
     <Compile Include="Authorization\WebApi\PerControllerAuthorization.cs" />
+    <Compile Include="Web\ProtectionMode.cs" />
     <Compile Include="WSTrust\CertificateWSTrustBindings.cs" />
     <Compile Include="WSTrust\IssuedTokenWSTrustBinding.cs" />
     <Compile Include="WSTrust\KerberosWSTrustBinding.cs" />

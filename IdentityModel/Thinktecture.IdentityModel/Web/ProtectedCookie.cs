@@ -21,11 +21,22 @@ namespace Thinktecture.IdentityModel.Web
         // DPAPI protection (single server)
         public ProtectedCookie()
         {
-            _transforms = new List<CookieTransform>
-            { 
-                new DeflateCookieTransform(), 
-                new ProtectedDataCookieTransform() 
-            };
+            SetDpapiTransforms();
+        }
+
+        public ProtectedCookie(ProtectionMode mode)
+        {
+            switch (mode)
+            {
+                case ProtectionMode.DPAPI:
+                    SetDpapiTransforms();
+                    return;
+                case ProtectionMode.MachineKey:
+                    SetMachineKeyTransforms();
+                    return;
+                default:
+                    throw new ArgumentException("mode");
+            }
         }
 
         // RSA protection (load balanced)
@@ -106,6 +117,24 @@ namespace Thinktecture.IdentityModel.Web
             }
 
             return Encoding.UTF8.GetString(buffer);
+        }
+
+        private void SetDpapiTransforms()
+        {
+            _transforms = new List<CookieTransform>
+            { 
+                new DeflateCookieTransform(), 
+                new ProtectedDataCookieTransform() 
+            };
+        }
+
+        private void SetMachineKeyTransforms()
+        {
+            _transforms = new List<CookieTransform>
+            { 
+                new DeflateCookieTransform(), 
+                new MachineKeyTransform() 
+            };
         }
     }
 }
